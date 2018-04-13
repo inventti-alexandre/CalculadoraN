@@ -5,14 +5,21 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CalculadoraServidor.Models;
+using Microsoft.Extensions.Logging;
 
 namespace CalculadoraServidor.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ILogger<HomeController> _logger;
         public IActionResult Index()
         {
             return View();
+        }
+        public HomeController(ILogger<HomeController> logger)
+        {
+            Console.WriteLine(logger);
+            _logger = logger;
         }
 
         public IActionResult About()
