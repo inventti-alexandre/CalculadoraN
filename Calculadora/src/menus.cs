@@ -5,6 +5,7 @@ using System.Runtime.Serialization.Json;
 using System.IO;
 using System.Net;
 using Newtonsoft.Json;
+using System.Security.Cryptography;
 
 namespace Calculadora
 {
@@ -16,6 +17,7 @@ namespace Calculadora
                 Boolean salida = false;
                 string eleccion;
                 string IdSesion = PedirId();
+                IdSesion = conversion(IdSesion);
                 Console.Clear();
                 while (!salida)
                 {
@@ -46,7 +48,7 @@ namespace Calculadora
                             }
                         default :
                             {
-                                Console.Clear();
+                                Console.Clear();                              
                                 Console.WriteLine("Opcion invalida");
                                 break;
                             }
@@ -299,6 +301,7 @@ namespace Calculadora
                 Console.Clear();
                 Console.WriteLine("Escriba el id sobre el que consultar las operaciones");
                 string IdConsulta = Console.ReadLine();
+                IdConsulta = conversion(IdConsulta);
                 ObjId objetoId = new ObjId(IdConsulta);
                 Console.Clear();
                 MemoryStream streamS = new MemoryStream();  
@@ -319,7 +322,15 @@ namespace Calculadora
                 Console.Clear();
             }
             
-
+        public static string conversion(string Id)
+        {
+             using (var algorithm = SHA512.Create()) //or MD5 SHA256 etc.
+                {
+                    var IdHash = algorithm.ComputeHash(System.Text.Encoding.UTF8.GetBytes(Id));            
+                    return BitConverter.ToString(IdHash).Replace("-", "").ToLower();
+                }
+                
+        }
         public static string SolicitarValores(string texto)
         {
             string sumadores="";
