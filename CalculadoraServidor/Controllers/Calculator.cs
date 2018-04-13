@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 
 namespace CalculadoraServidor.Controllers
 {
+    
     public class Calculator : Controller
     {
         
