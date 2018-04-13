@@ -27,9 +27,7 @@ namespace CalculadoraServidor
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            int a = 0;
-            int b = 0;
-            a = b + a;
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
