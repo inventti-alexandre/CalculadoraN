@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Net.Http.Headers;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
 
 namespace CalculadoraServidor.Controllers
 {
     public class Calculator : Controller
     {
+        
         // 
         // GET: /HelloWorld/ 
 
