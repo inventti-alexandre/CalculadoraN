@@ -12,29 +12,35 @@ namespace CalculadoraServidor.Models
         public static string PedirJournal(string IdEvi)
         {
             string ruta = $"Journal\\{IdEvi}.txt";
-            string JsonSerializado;
-            try
+            string JsonSerializado = "";
+            /*Se realizan 15 intentos de abrir el fichero con un delay de 200ms, para evitar casos en 
+            los que el fichero este ya en uso */
+            for (int a = 0; a < 15; a++)
             {
-                List<respJournal> ListadoOperaciones = new List<respJournal>();
-                respJournal OperacionTupla;
-                string[] DatosOperacion;
-                using (StreamReader LectorStream = new StreamReader(ruta))
+                try
                 {
-                    while (LectorStream.Peek() >= 0)
+                    List<respJournal> ListadoOperaciones = new List<respJournal>();
+                    respJournal OperacionTupla;
+                    string[] DatosOperacion;
+                    using (StreamReader LectorStream = new StreamReader(ruta))
                     {
-                        /*Split sobre ||, formato guardado en el txt divididos los tres parámetros por || dentro del archivo */
-                        DatosOperacion = LectorStream.ReadLine().Split("||");
-                        OperacionTupla = new respJournal(DatosOperacion[0], DatosOperacion[1], DatosOperacion[2]);
-                        ListadoOperaciones.Add(OperacionTupla);
+                        while (LectorStream.Peek() >= 0)
+                        {
+                            /*Split sobre ||, formato guardado en el txt divididos los tres parámetros por || dentro del archivo */
+                            DatosOperacion = LectorStream.ReadLine().Split("||");
+                            OperacionTupla = new respJournal(DatosOperacion[0], DatosOperacion[1], DatosOperacion[2]);
+                            ListadoOperaciones.Add(OperacionTupla);
+                        }
                     }
+                    JsonSerializado = JsonConvert.SerializeObject(ListadoOperaciones, Formatting.Indented);
+                    a = 10;
                 }
-                JsonSerializado = JsonConvert.SerializeObject(ListadoOperaciones, Formatting.Indented);
-            }
-            /*Si el archivo no existe devuelve el error */
-            catch (Exception)
-            {
-                JsonSerializado = crearJson.CrearError("Internal Error", "400", "No se pudo abrir el fichero del usuario indicado");
-
+                /*Si el archivo no existe devuelve el error */
+                catch (Exception)
+                {
+                    if (a > 8) JsonSerializado = crearJson.CrearError("Internal Error", "400", "No se pudo abrir el fichero del usuario");
+                    System.Threading.Thread.Sleep(200);
+                }
             }
             JsonSerializado = JsonSerializado.Replace("\\n", string.Empty);
             JsonSerializado = JsonSerializado.Replace("\\r", string.Empty);
