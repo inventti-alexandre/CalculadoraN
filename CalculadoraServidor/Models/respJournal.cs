@@ -1,6 +1,7 @@
 
 using System.Runtime.Serialization;
 
+/*Objeto serialización de Journal */
 [DataContract(Name="journal")]
 class respJournal
 {

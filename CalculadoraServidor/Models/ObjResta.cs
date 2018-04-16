@@ -1,4 +1,5 @@
 using System.Runtime.Serialization;
+/*Objeto deserializar resta */
 
 [DataContract(Name="resta")]
 public class ObjResta

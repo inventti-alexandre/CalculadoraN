@@ -1,5 +1,6 @@
 using System.Runtime.Serialization;
 
+/*Objeto deserializar suma */
 [DataContract(Name="suma")]
 public class Objsuma
 {

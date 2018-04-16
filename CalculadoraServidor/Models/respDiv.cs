@@ -1,4 +1,5 @@
 using System.Runtime.Serialization;
+/*Objeto serialización de resta */
 
 [DataContract(Name="ResDiv")]
 

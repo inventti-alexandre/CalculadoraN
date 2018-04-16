@@ -1,5 +1,6 @@
 using System.Runtime.Serialization;
 
+/*Objeto serialización de raiz cuadrada */
 [DataContract(Name="raiz_cuadrada")]
 public class respSqr
 {

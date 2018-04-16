@@ -1,13 +1,14 @@
 using System;
-using System.Runtime.Serialization.Json;
 using System.IO;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
+/*Operaciones para devulver el modelo */
 namespace CalculadoraServidor.Models
 {
     public class JournalModel
     {
+        /*IdEvi nombre del archivo para abrir y devolver el log */
         public static string PedirJournal(string IdEvi)
         {
             string ruta =  "Journal\\" + IdEvi + ".txt"; 
@@ -20,6 +21,7 @@ namespace CalculadoraServidor.Models
             {
                 while (LectorStream.Peek() >= 0) 
                 {       
+                    /*Split sobre ||, formato guardado en el txt divididos los tres parámetros por || dentro del archivo */
                     DatosOperacion = LectorStream.ReadLine().Split("||");
                     OperacionTupla = new respJournal(DatosOperacion[0],DatosOperacion[1],DatosOperacion[2]);
                     ListadoOperaciones.Add(OperacionTupla);
@@ -27,6 +29,7 @@ namespace CalculadoraServidor.Models
             }
             JsonSerializado = JsonConvert.SerializeObject(ListadoOperaciones, Formatting.Indented);
             }
+            /*Si el archivo no existe devuelve el error */
             catch(Exception)
             {
                 JsonSerializado = crearJson.CrearError("Internal Error", "400","No se pudo abrir el fichero del usuario");

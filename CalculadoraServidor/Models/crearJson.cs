@@ -64,7 +64,7 @@ namespace CalculadoraServidor.Models
             sr.Close();
             return JsonFinal;
         }
-
+        /*Json devuelto en caso de error */
         public static string CrearError(string Codigo, string estado, string mensaje)
         {
 

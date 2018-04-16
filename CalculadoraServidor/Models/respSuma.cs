@@ -1,5 +1,6 @@
 using System.Runtime.Serialization;
 
+/*Objeto serialización de resta */
 [DataContract(Name="ResSum")]
 public class respSuma
 {

@@ -1,8 +1,7 @@
 using System;
-using System.Runtime.Serialization.Json;
-using System.IO;
 namespace CalculadoraServidor.Models
 {
+    /*Calculos de multiplicación */
     public class MultModel
     {
        

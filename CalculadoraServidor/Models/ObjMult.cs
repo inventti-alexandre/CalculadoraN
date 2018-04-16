@@ -1,5 +1,5 @@
 using System.Runtime.Serialization;
-
+/*Objeto deserializar multiplicación */
 [DataContract(Name="multiplicacion")]
 public class ObjMult
 {

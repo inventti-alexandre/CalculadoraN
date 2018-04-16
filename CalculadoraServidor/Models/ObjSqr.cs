@@ -1,5 +1,6 @@
 using System.Runtime.Serialization;
 
+/*Objeto deserializar raiz cuadrada */
 [DataContract(Name="raiz_cuadrada")]
 public class ObjSqr
 {

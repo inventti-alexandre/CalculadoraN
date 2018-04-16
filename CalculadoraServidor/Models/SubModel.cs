@@ -1,9 +1,8 @@
 using System;
-using System.Runtime.Serialization.Json;
-using System.IO;
 namespace CalculadoraServidor.Models
-{
-    public class SubModel
+{   
+    /*Calculos para realizar resta */
+     public class SubModel
     {
        
 

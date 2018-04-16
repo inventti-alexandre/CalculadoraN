@@ -13,6 +13,7 @@ namespace CalculadoraServidor.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+        /*Controlador para Nlog */
         public HomeController(ILogger<HomeController> logger)
         {
             

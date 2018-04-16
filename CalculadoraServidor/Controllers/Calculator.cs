@@ -14,8 +14,7 @@ namespace CalculadoraServidor.Controllers
     public class Calculator : Controller
     {
         
-        // 
-        // GET: /HelloWorld/ 
+    
 
         public string Index()
         {
@@ -23,8 +22,11 @@ namespace CalculadoraServidor.Controllers
             
         }
 
-        // 
-        // POST: /Calculator/Add
+        /*
+        Cada controlador comprueba que las datos sean correctos, si lo son cada modelo se encarga del calculo
+        en caso de que no lo sea devuelve un error 400 con la info en el json
+         */
+        // Post a suma
         
         [HttpPost]
         public string Add([FromBody]Objsuma datos)
@@ -41,7 +43,7 @@ namespace CalculadoraServidor.Controllers
             }
                
         }
-        
+        // Post a resta
         [HttpPost]
         public string Sub([FromBody]ObjResta datos)
         {
@@ -56,7 +58,7 @@ namespace CalculadoraServidor.Controllers
                 return crearJson.CrearError("Internal Error", "400","Datos introducidos erróneos");
             }       
         }
-
+        // Post a multiplicacion
         [HttpPost]
         public string Mult([FromBody]ObjMult datos)
         {
@@ -72,7 +74,7 @@ namespace CalculadoraServidor.Controllers
             }  
            
         }
-
+        // Post a division
         [HttpPost]
         public string Div([FromBody]ObjDiv datos)
         {
@@ -95,14 +97,14 @@ namespace CalculadoraServidor.Controllers
                 return crearJson.CrearError("Internal Error", "400","Datos introducidos erróneos");
             }
         }
-
+        // Post a raiz cuadrada
         [HttpPost]
         public string Sqrt([FromBody]ObjSqr datos)
         {
             string IdEvi = Request.Headers[key: "X-Evi-Tracking-Id"];
             return SqrModel.RaizCuadrada(datos, IdEvi);         
         }
-
+        // Post a journal
         [HttpPost]
         public string Journal([FromBody]ObjId EviId)
         {

@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 
+/*Calculo para guardar el journal en un archivo */
 class saveInFile
 {
     public static void GuardarOperaciones(string Id, string Operacion, string tiempo, string tipoOp)
@@ -9,13 +10,11 @@ class saveInFile
         string archivoRut = "Journal\\" + Id + ".txt"; 
         //Crear archivo
         FileStream ArchivoOperaciones = new FileStream(archivoRut, FileMode.Append, FileAccess.Write);
-            // Create a new stream to write to the file
+            
         StreamWriter sw1 = new StreamWriter(ArchivoOperaciones);
-            // Write a string to the file
-        sw1.Write(tiempo + "||" + tipoOp + "||" + Operacion+ Environment.NewLine);
-            // Close StreamWriter
+            /*Escribir datos del archivo separando variables por || y nuevas operaciones por salto de linea */
+        sw1.Write(tiempo + "||" + tipoOp + "||" + Operacion+ Environment.NewLine);       
         sw1.Close();
-            // Close file
         ArchivoOperaciones.Close();
 
 
