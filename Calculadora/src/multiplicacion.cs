@@ -1,5 +1,5 @@
-using System;
 using System.Runtime.Serialization;
+/*Objetot para serializar el envío de la multiplicación */
 
 [DataContract(Name="multiplicacion")]
 public class multiplicacion

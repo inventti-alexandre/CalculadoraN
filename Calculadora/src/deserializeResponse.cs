@@ -1,15 +1,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Runtime.Serialization.Json;
-using System.Text;
 using Newtonsoft.Json;
-
 public class deserializeResponse
 {
 
-
+    /*Deserializaciones para json */
     public static string DeserializeSuma(string JsEntrada)
     {      
         JsEntrada = quitarEscapes(JsEntrada);
@@ -77,6 +73,8 @@ public class deserializeResponse
         respSqr ObjResult = JsonConvert.DeserializeObject<respSqr>(JsEntrada);  
         return ObjResult;              
     }
+
+    /*Deserialización a la respuesta de la petición al journal*/
     public static string[] DeserializeResponseYConvertir (string JsEntrada)
     {
         try
@@ -109,6 +107,7 @@ public class deserializeResponse
              return error;
         }
     }
+    /*En caso de que el json venga con saltos de linea o comillas extra método para quitarlas */
     public static string quitarEscapes(string salida)
     {
         

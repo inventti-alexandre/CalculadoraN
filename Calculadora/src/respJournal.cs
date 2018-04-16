@@ -1,5 +1,6 @@
 
 using System.Runtime.Serialization;
+/*Objeto para deserializar la respuesta del servidor a la petición de journal */
 
 [DataContract(Name="journal")]
 class respJournal

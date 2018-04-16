@@ -1,6 +1,6 @@
-using System;
 using System.Runtime.Serialization;
 
+/*Objeto para serializar el envío de la división */
 [DataContract(Name="division")]
 public class division
 {

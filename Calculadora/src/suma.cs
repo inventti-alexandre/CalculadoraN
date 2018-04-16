@@ -1,5 +1,5 @@
-using System;
 using System.Runtime.Serialization;
+/*Objeto para serializar suma */
 
 [DataContract(Name="suma")]
 public class suma

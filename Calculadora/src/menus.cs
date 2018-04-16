@@ -1,21 +1,21 @@
 using System;
-using System.Threading.Tasks;
-using System.Collections.Generic;
 using System.Runtime.Serialization.Json;
 using System.IO;
-using System.Net;
-using Newtonsoft.Json;
 using System.Security.Cryptography;
-
 namespace Calculadora
 {
     public class menus
     {
-        
+        /*Menu 1
+        1.Hacer calculos
+        2.Consulta de Journal
+        3.Salir 
+        Default mensaje error y vuelta al menu1*/
         public static void menu()
             {
                 Boolean salida = false;
                 string eleccion;
+                /*Id para la sesion */
                 string IdSesion = PedirId();
                 IdSesion = conversion(IdSesion);
                 Console.Clear();
@@ -87,6 +87,13 @@ namespace Calculadora
                 Console.WriteLine("6.Salir");
             }
 
+            /*menu 2
+            1.sumar
+            2.restar
+            3.multiplicar
+            4.dividir
+            5.raiz cuadrada 
+            Default mensaje error y vuelta al menu2*/
             public static void menuCalc(string IdSesion)
             {
                 Console.Clear();
@@ -94,7 +101,7 @@ namespace Calculadora
                 while (!salida2)
                 {
                     opcionesCalcular();
-                    switch(seleccionarCalculo())
+                    switch(seleccionar())
                     {
                         case ("1"):
                             {
@@ -287,13 +294,6 @@ namespace Calculadora
                     }
                 }
             }
-            public static string seleccionarCalculo()
-            {
-                string elec2;
-                elec2 = Console.ReadLine();
-                return elec2;
-            }
-
 
 
             public static void consulta(string IdSesion)
@@ -316,7 +316,7 @@ namespace Calculadora
                 string salida = res.responder("http://localhost:5000/Calculator/Journal", JsonFinal,IdSesion);
                 string[] SalidaOperaciones = deserializeResponse.DeserializeResponseYConvertir(salida);
                 Console.Clear();
-                ImprimirDatos(SalidaOperaciones, IdConsulta);
+                ImprimirDatos(SalidaOperaciones);
                 Console.WriteLine("Pulse una tecla para continuar...");
                 Console.ReadLine();
                 Console.Clear();
@@ -364,8 +364,9 @@ namespace Calculadora
         string Idevi= Console.ReadLine();
         return Idevi;
     }
-     
-     public static void ImprimirDatos(string[] DatosSt, string IdCons)
+     /*Imprimir datos de consulta a journal
+      */
+     public static void ImprimirDatos(string[] DatosSt)
      {
         
          for (int a = 0; a < DatosSt.Length; a++)

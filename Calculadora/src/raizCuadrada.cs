@@ -1,4 +1,5 @@
 using System.Runtime.Serialization;
+/*Objeto para serializar la petición de raiz cuadrada */
 
 [DataContract(Name="raiz_cuadrada")]
 public class raizCuadrada

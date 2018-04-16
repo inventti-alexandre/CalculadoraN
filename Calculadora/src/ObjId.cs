@@ -1,5 +1,6 @@
 
 using System.Runtime.Serialization;
+/*Objeto para serializar el id que se envía a la petición de journal */
 
 [DataContract(Name="Evi-Id")]
 public class ObjId

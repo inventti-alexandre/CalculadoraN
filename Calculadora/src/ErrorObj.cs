@@ -1,5 +1,6 @@
 
 using System.Runtime.Serialization;
+/*Objeto para deserializar respuesta de error */
 [DataContract(Name="Error")]
 class ErrorObj
 {

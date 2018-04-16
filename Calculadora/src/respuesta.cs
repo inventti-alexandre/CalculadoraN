@@ -4,6 +4,8 @@ using System;
 using System.IO;
 using System.Net;
 
+/*Petición Http al servidor
+No asíncrona ya que el cliente no puede continuar sin la respuesta*/
 public class respuesta{
 
 public respuesta()
@@ -20,11 +22,13 @@ public  string responder (string uri, string json,string EviId)
             httpWebRequest.ContentType="application/json";
             httpWebRequest.Accept = "application/json";
             httpWebRequest.Method = "POST";
+            /*Cabecera Id identificativa de usuario */
             httpWebRequest.Headers["X-Evi-Tracking-Id"]=EviId;
+            /*Timeout 5s */
             httpWebRequest.Timeout=5000;
             
             
-        
+        /*Escritura de json */
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
                 streamWriter.Write(json);
@@ -32,7 +36,7 @@ public  string responder (string uri, string json,string EviId)
                 streamWriter.Close();
             
                 httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-               
+               /*Lectura de json */
                 using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
                 {
                     salida = streamReader.ReadToEnd();

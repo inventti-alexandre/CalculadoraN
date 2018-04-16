@@ -1,5 +1,5 @@
-using System;
 using System.Runtime.Serialization;
+/*Objeto para serializar resta */
 
 [DataContract(Name="resta")]
 public class resta
