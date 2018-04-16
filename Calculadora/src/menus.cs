@@ -242,7 +242,6 @@ namespace Calculadora
                                     Console.WriteLine("El resultado es : " + ObjRes.GetResultado());
                                 }
                                 continuar();
-
                             }
                             catch (Exception e)
                             {
