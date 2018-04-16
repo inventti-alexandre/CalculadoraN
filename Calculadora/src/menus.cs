@@ -122,7 +122,7 @@ namespace Calculadora
                                 conversor.WriteObject(streamS, sumador);
                                 String JsonFinal = serializador(conversor, streamS);
                                 respuesta res = new respuesta();
-                                string salida = res.responder(servidor + "/Calculator/Add", JsonFinal, IdSesion);
+                                string salida = res.responder($"{servidor}/Calculator/Add", JsonFinal, IdSesion);
                                 Console.Clear();
                                 string Respuesta = deserializeResponse.DeserializeSuma(salida);
                                 Console.WriteLine(Respuesta);
@@ -153,7 +153,7 @@ namespace Calculadora
                                 String JsonFinal = serializador(conversor, streamS);
                                 respuesta res = new respuesta();
                                 Console.Clear();
-                                string salida = res.responder(servidor + "/Calculator/Sub", JsonFinal, IdSesion);
+                                string salida = res.responder($"{servidor}/Calculator/Sub", JsonFinal, IdSesion);
                                 string Respuesta = deserializeResponse.DeserializeResta(salida);
                                 Console.WriteLine(Respuesta);
                                 continuar();
@@ -181,7 +181,7 @@ namespace Calculadora
                                 String JsonFinal = serializador(conversor, streamS);
                                 Console.Clear();
                                 respuesta res = new respuesta();
-                                string salida = res.responder(servidor + "/Calculator/Mult", JsonFinal, IdSesion);
+                                string salida = res.responder($"{servidor}/Calculator/Mult", JsonFinal, IdSesion);
                                 string Respuesta = deserializeResponse.DeserializeMult(salida);
                                 Console.WriteLine(Respuesta);
                                 continuar();
@@ -208,7 +208,7 @@ namespace Calculadora
                                 String JsonFinal = serializador(conversor, streamS);
                                 respuesta res = new respuesta();
                                 Console.Clear();
-                                string salida = res.responder(servidor + "/Calculator/Div", JsonFinal, IdSesion);
+                                string salida = res.responder($"{servidor}/Calculator/Div", JsonFinal, IdSesion);
                                 string Respuesta = deserializeResponse.DeserializeDiv(salida);
                                 Console.WriteLine(Respuesta);
                                 continuar();
@@ -234,12 +234,12 @@ namespace Calculadora
                                 conversor.WriteObject(streamS, raiz);
                                 String JsonFinal = serializador(conversor, streamS);
                                 respuesta res = new respuesta();
-                                string salida = res.responder(servidor + "/Calculator/Sqrt", JsonFinal, IdSesion);
+                                string salida = res.responder($"{servidor}/Calculator/Sqrt", JsonFinal, IdSesion);
                                 if (salida != "")
                                 {
                                     respSqr ObjRes = deserializeResponse.DeserializeSqrt(salida);
                                     Console.Clear();
-                                    Console.WriteLine("El resultado es : " + ObjRes.GetResultado());
+                                    Console.WriteLine($"El resultado es : {ObjRes.GetResultado()}");
                                 }
                                 continuar();
                             }
@@ -297,7 +297,7 @@ namespace Calculadora
             String JsonFinal = leido.ReadToEnd();
             leido.Close();
             respuesta res = new respuesta();
-            string salida = res.responder(servidor + "/Calculator/Journal", JsonFinal, IdSesion);
+            string salida = res.responder($"{servidor}/Calculator/Journal", JsonFinal, IdSesion);
             string[] SalidaOperaciones = deserializeResponse.DeserializeResponseYConvertir(salida);
             Console.Clear();
             ImprimirDatos(SalidaOperaciones);
@@ -317,7 +317,7 @@ namespace Calculadora
         {
             string sumadores = "";
             String Dato = null;
-            Console.WriteLine("Introduzca valores para {0}, para acabar no introduzca nada", texto);
+            Console.WriteLine($"Introduzca valores para {texto}, para acabar no introduzca nada");
             Dato = Console.ReadLine();
             if (Dato != "") sumadores = Dato;
             while (Dato != "")

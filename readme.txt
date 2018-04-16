@@ -1,7 +1,22 @@
 Calculadora cliente servidor.
 Sobre .net Core 2.1.103
 
-Ejemplo de petición
+
+Build
+Mediante comando dotnet msbuild sobre el cliente y sobre el servidor
+
+Resumen de funcionamiento
+El usuario podrá realizar 6 operaciones mediante el cliente
+1.Suma
+2.Resta
+3.Multiplicación
+4.División
+5.Raiz cuadrada
+6.Consulta de operaciones realizadas
+
+
+Caso de uso de suma
+Ejemplo de ejecución
 #Cliente
 -El usuario abre el cliente y escribe su Id
 -Selecciona realizar calculos

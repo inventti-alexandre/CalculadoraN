@@ -12,7 +12,7 @@ public class deserializeResponse
         if (!JsEntrada.Contains("ErrorCode"))
         {
             respSuma ObjResult = JsonConvert.DeserializeObject<respSuma>(JsEntrada);
-            return ("El resultado es : " + ObjResult.GetSum());
+            return ($"El resultado es : {ObjResult.GetSum()}");
         }
         else
         {
@@ -27,7 +27,7 @@ public class deserializeResponse
         {
             JsEntrada = quitarEscapes(JsEntrada);
             respResta ObjResult = JsonConvert.DeserializeObject<respResta>(JsEntrada);
-            return ("El resultado es : " + ObjResult.GetDiferencia());
+            return ($"El resultado es : { ObjResult.GetDiferencia()}");
         }
         else
         {
@@ -42,7 +42,7 @@ public class deserializeResponse
         {
             JsEntrada = quitarEscapes(JsEntrada);
             respMult ObjResult = JsonConvert.DeserializeObject<respMult>(JsEntrada);
-            return ("El resultado es : " + ObjResult.GetMultip());
+            return ($"El resultado es : {ObjResult.GetMultip()}");
         }
         else
         {
@@ -57,7 +57,7 @@ public class deserializeResponse
         {
             JsEntrada = quitarEscapes(JsEntrada);
             respDiv ObjResult = JsonConvert.DeserializeObject<respDiv>(JsEntrada);
-            return ("El resultado es : " + ObjResult.GetResultado() + "Resto: " + ObjResult.GetResto());
+            return ($"El resultado es : {ObjResult.GetResultado()} Resto: {ObjResult.GetResto()}");
         }
         else
         {
@@ -95,9 +95,9 @@ public class deserializeResponse
             try
             {
                 ErrorObj ObjResult = JsonConvert.DeserializeObject<ErrorObj>(JsEntrada);
-                error[0] = "Code: " + ObjResult.GetErrorCode();
-                error[1] = "Status: " + ObjResult.GetErrorStatus();
-                error[2] = "Message: " + ObjResult.GetErrorMessage();
+                error[0] = $"Code: {ObjResult.GetErrorCode()}";
+                error[1] = $"Status: {ObjResult.GetErrorStatus()}";
+                error[2] = $"Message: {ObjResult.GetErrorMessage()}";
             }
             catch (Exception)
             {
@@ -127,7 +127,7 @@ public class deserializeResponse
     {
         json = quitarEscapes(json);
         ErrorObj ObjResult = JsonConvert.DeserializeObject<ErrorObj>(json);
-        return "Error: " + ObjResult.GetErrorMessage();
+        return $"Error: {ObjResult.GetErrorMessage()}";
     }
 
 }
