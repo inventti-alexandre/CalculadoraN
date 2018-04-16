@@ -14,7 +14,7 @@ namespace CalculadoraServidor.Models
             for (int a = 0; a < datos.GetDivisor().Length; a++)
             {
                 divisor = divisor * Convert.ToInt64(datos.GetDivisor()[a]);
-                if (a < (datos.GetDivisor().Length - 1)) OperacionSt = OperacionSt + datos.GetDivisor()[a] + " - ";
+                if (a < (datos.GetDivisor().Length - 1)) OperacionSt = OperacionSt + datos.GetDivisor()[a] + " : ";
                 else OperacionSt = OperacionSt + datos.GetDivisor()[a] + " = ";
             }
 
