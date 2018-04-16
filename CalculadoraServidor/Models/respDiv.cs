@@ -1,14 +1,14 @@
 using System.Runtime.Serialization;
 /*Objeto serialización de resta */
 
-[DataContract(Name="ResDiv")]
+[DataContract(Name = "ResDiv")]
 
 public class respDiv
 {
-    [DataMember(Name="Quotient")]  
+    [DataMember(Name = "Quotient")]
     private double Resultado;
 
-    [DataMember(Name="Remainder")]  
+    [DataMember(Name = "Remainder")]
     private double Resto;
 
     public respDiv(double ResEn, double ResEn2)
@@ -28,8 +28,8 @@ public class respDiv
     }
 
     public double GetResto()
-    { 
-        return Resto; 
+    {
+        return Resto;
     }
 
     public void SetResto(double value)

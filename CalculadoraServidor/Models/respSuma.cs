@@ -1,10 +1,10 @@
 using System.Runtime.Serialization;
 
 /*Objeto serialización de resta */
-[DataContract(Name="ResSum")]
+[DataContract(Name = "ResSum")]
 public class respSuma
 {
-    [DataMember(Name="Sum")]  
+    [DataMember(Name = "Sum")]
     private double Sum;
 
     public respSuma(double ResEn)

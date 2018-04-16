@@ -2,16 +2,16 @@
 using System.Runtime.Serialization;
 /*Objeto para deserializar Id de peticion journal */
 
-[DataContract(Name="Evi-Id")]
+[DataContract(Name = "Evi-Id")]
 public class ObjId
 {
-    [DataMember(Name="Id")]  
+    [DataMember(Name = "Id")]
     private string Id;
     public ObjId(string id)
     {
         SetId(id);
     }
-     public string GetId()
+    public string GetId()
     {
         return Id;
     }

@@ -21,12 +21,12 @@ namespace CalculadoraServidor
                 logger.Debug("init main");
                 BuildWebHost(args).Run();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                 logger.Error(e, "Stopped program because of exception");
-                  throw;
+                logger.Error(e, "Stopped program because of exception");
+                throw;
             }
-             finally
+            finally
             {
                 NLog.LogManager.Shutdown();
             }
@@ -35,7 +35,7 @@ namespace CalculadoraServidor
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
-                
+
                 .UseNLog()
                 .Build();
     }

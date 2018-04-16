@@ -1,13 +1,13 @@
 using System.Runtime.Serialization;
 
 /*Objeto para serializar el envío de la división */
-[DataContract(Name="division")]
+[DataContract(Name = "division")]
 public class division
 {
-    [DataMember(Name="Dividend")]  
+    [DataMember(Name = "Dividend")]
     private double dividend;
 
-    [DataMember(Name="Divisor")]  
+    [DataMember(Name = "Divisor")]
     private double[] divisor;
 
     public division(double dividendo, double[] divisor)

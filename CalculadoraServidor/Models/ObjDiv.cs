@@ -1,12 +1,12 @@
 using System.Runtime.Serialization;
 /*Objeto para deserializar division */
-[DataContract(Name="division")]
+[DataContract(Name = "division")]
 public class ObjDiv
 {
-    [DataMember(Name="Dividend")]  
+    [DataMember(Name = "Dividend")]
     private double dividend;
 
-    [DataMember(Name="Divisor")]  
+    [DataMember(Name = "Divisor")]
     private double[] divisor;
 
     public ObjDiv(double dividendo, double[] divisor)

@@ -1,16 +1,16 @@
 using System.Runtime.Serialization;
 
 /*Objeto deserializar suma */
-[DataContract(Name="suma")]
+[DataContract(Name = "suma")]
 public class Objsuma
 {
-    [DataMember(Name="addens")]  
+    [DataMember(Name = "addens")]
     private double[] addens;
 
     public Objsuma(double[] sumandosEn)
     {
 
-        addens =  sumandosEn;
+        addens = sumandosEn;
     }
     public double[] GetSumandos()
     {
@@ -22,5 +22,5 @@ public class Objsuma
         addens = value;
     }
 
-   
+
 }

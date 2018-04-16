@@ -1,14 +1,14 @@
 
 using System.Runtime.Serialization;
 /*Objeto para deserializar respuesta de error */
-[DataContract(Name="Error")]
+[DataContract(Name = "Error")]
 class ErrorObj
 {
-    [DataMember(Name="ErrorCode")]
+    [DataMember(Name = "ErrorCode")]
     private string ErrorCode;
-    [DataMember(Name="ErrorStatus")]
+    [DataMember(Name = "ErrorStatus")]
     private string ErrorStatus;
-    [DataMember(Name="ErrorMessage")]
+    [DataMember(Name = "ErrorMessage")]
     private string ErrorMessage;
 
 

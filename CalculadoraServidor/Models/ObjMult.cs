@@ -1,9 +1,9 @@
 using System.Runtime.Serialization;
 /*Objeto deserializar multiplicación */
-[DataContract(Name="multiplicacion")]
+[DataContract(Name = "multiplicacion")]
 public class ObjMult
 {
-    [DataMember(Name="factors")]  
+    [DataMember(Name = "factors")]
     private double[] factors;
 
     public ObjMult(double[] multiplicandos)

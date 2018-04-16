@@ -1,10 +1,10 @@
 using System.Runtime.Serialization;
 /*Objeto para deserializar la respuesta del servidor a la petición de raiz cuadrada */
 
-[DataContract(Name="raiz_cuadrada")]
+[DataContract(Name = "raiz_cuadrada")]
 public class respSqr
 {
-    [DataMember(Name="Square")]  
+    [DataMember(Name = "Square")]
     private double resultado;
 
     public respSqr(double numeroEn)

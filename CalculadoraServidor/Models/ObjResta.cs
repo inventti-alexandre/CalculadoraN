@@ -1,13 +1,13 @@
 using System.Runtime.Serialization;
 /*Objeto deserializar resta */
 
-[DataContract(Name="resta")]
+[DataContract(Name = "resta")]
 public class ObjResta
 {
-    [DataMember(Name="Minuend")]  
+    [DataMember(Name = "Minuend")]
     private double minuend;
 
-    [DataMember(Name="Subtrahend")]  
+    [DataMember(Name = "Subtrahend")]
     private double[] subtrahend;
 
     public ObjResta(double minuendo, double[] sustraendo)

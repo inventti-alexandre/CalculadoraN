@@ -1,10 +1,10 @@
 using System.Runtime.Serialization;
 /*Objetot para serializar el envío de la multiplicación */
 
-[DataContract(Name="multiplicacion")]
+[DataContract(Name = "multiplicacion")]
 public class multiplicacion
 {
-    [DataMember(Name="factors")]  
+    [DataMember(Name = "factors")]
     private double[] factors;
 
     public multiplicacion(double[] multiplicandos)

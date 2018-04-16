@@ -2,18 +2,18 @@
 using System.Runtime.Serialization;
 /*Objeto para deserializar la respuesta del servidor a la petición de journal */
 
-[DataContract(Name="journal")]
+[DataContract(Name = "journal")]
 class respJournal
 {
-    [DataMember(Name="Operation")]
+    [DataMember(Name = "Operation")]
     private string operacion;
 
-    [DataMember(Name="Calculation")]
+    [DataMember(Name = "Calculation")]
     private string calculo;
-    [DataMember(Name="Date")]
+    [DataMember(Name = "Date")]
     private string fecha;
 
-    public respJournal(string fechaEn, string OperEn, string CalculoEn )
+    public respJournal(string fechaEn, string OperEn, string CalculoEn)
     {
         SetOperacion(OperEn);
         SetCalculo(CalculoEn);

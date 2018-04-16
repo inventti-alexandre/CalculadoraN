@@ -1,13 +1,13 @@
 using System.Runtime.Serialization;
 /*Objeto para serializar resta */
 
-[DataContract(Name="resta")]
+[DataContract(Name = "resta")]
 public class resta
 {
-    [DataMember(Name="Minuend")]  
+    [DataMember(Name = "Minuend")]
     private double minuend;
 
-    [DataMember(Name="Subtrahend")]  
+    [DataMember(Name = "Subtrahend")]
     private double[] subtrahend;
 
     public resta(double minuendo, double[] sustraendo)
