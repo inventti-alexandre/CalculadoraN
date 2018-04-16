@@ -10,18 +10,18 @@ namespace CalculadoraServidor.Models
         {
             long dividendo = Convert.ToInt64(datos.GetDividend());
             long divisor = 1;
-            string OperacionSt = "" + dividendo;
+            string OperacionSt = $"{dividendo}";
             for (int a = 0; a < datos.GetDivisor().Length; a++)
             {
                 divisor = divisor * Convert.ToInt64(datos.GetDivisor()[a]);
-                if (a < (datos.GetDivisor().Length - 1)) OperacionSt = OperacionSt + datos.GetDivisor()[a] + " : ";
-                else OperacionSt = OperacionSt + datos.GetDivisor()[a] + " = ";
+                if (a < (datos.GetDivisor().Length - 1)) OperacionSt = $"{OperacionSt}{datos.GetDivisor()[a]} : ";
+                else OperacionSt = $"{OperacionSt}{datos.GetDivisor()[a]} = ";
             }
 
             double resultado = dividendo / divisor;
             double resto = dividendo % divisor;
 
-            OperacionSt = OperacionSt + resultado + " R:" + resto;
+            OperacionSt =$"{OperacionSt}{resultado} R: {resto}";
             string tiempo = String.Format("{0:u}", DateTime.Now);
             saveInFile.GuardarOperaciones(EviId, OperacionSt, tiempo, "Div");
 

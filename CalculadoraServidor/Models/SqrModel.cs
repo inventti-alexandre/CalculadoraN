@@ -11,7 +11,7 @@ namespace CalculadoraServidor.Models
 
             double DatosT = datos.GetNumber();
             double resultado = Math.Sqrt(DatosT);
-            string OperacionSt = DatosT + " Sqrt = " + resultado;
+            string OperacionSt = $"{DatosT} Sqrt = {resultado}";
             string tiempo = String.Format("{0:u}", DateTime.Now);
             saveInFile.GuardarOperaciones(EviId, OperacionSt, tiempo, "Sqr");
 

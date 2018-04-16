@@ -11,7 +11,7 @@ namespace CalculadoraServidor.Models
         /*IdEvi nombre del archivo para abrir y devolver el log */
         public static string PedirJournal(string IdEvi)
         {
-            string ruta = "Journal\\" + IdEvi + ".txt";
+            string ruta = $"Journal\\{IdEvi}.txt";
             string JsonSerializado;
             try
             {
@@ -33,7 +33,7 @@ namespace CalculadoraServidor.Models
             /*Si el archivo no existe devuelve el error */
             catch (Exception)
             {
-                JsonSerializado = crearJson.CrearError("Internal Error", "400", "No se pudo abrir el fichero del usuario");
+                JsonSerializado = crearJson.CrearError("Internal Error", "400", "No se pudo abrir el fichero del usuario indicado");
 
             }
             JsonSerializado = JsonSerializado.Replace("\\n", string.Empty);

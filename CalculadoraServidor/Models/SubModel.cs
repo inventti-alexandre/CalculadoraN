@@ -10,12 +10,12 @@ namespace CalculadoraServidor.Models
         {
             double minuendo = datosResta.GetMinuend();
             double[] sustraendo = datosResta.GetSubtrahend();
-            string OperacionSt = "" + minuendo;
+            string OperacionSt = $"{minuendo}";
             for (int a = 0; a < sustraendo.Length; a++)
             {
                 minuendo = minuendo - sustraendo[a];
-                if (a < (sustraendo.Length - 1)) OperacionSt = OperacionSt + sustraendo[a] + " - ";
-                else OperacionSt = OperacionSt + sustraendo[a] + " = ";
+                if (a < (sustraendo.Length - 1)) OperacionSt = $"{OperacionSt}{sustraendo[a]} - ";
+                else OperacionSt = $"{OperacionSt}{sustraendo[a]} = ";
             }
             OperacionSt = OperacionSt + minuendo;
             string tiempo = String.Format("{0:u}", DateTime.Now);
