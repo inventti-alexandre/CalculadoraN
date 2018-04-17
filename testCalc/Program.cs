@@ -36,7 +36,7 @@ namespace testCalc
                     ListaLlamadas[3].responder($"{servidor}/Calculator/Journal", jsonConsulta, id);
                     ListaLlamadas[1].responder($"{servidor}/Calculator/Add", crearJson(rnd), id);
                     ListaLlamadas[4].responder($"{servidor}/Calculator/Journal", jsonConsulta2, id);
-                    Thread.Sleep(50);
+                    Thread.Sleep(25);
                 }
             }
 
@@ -60,7 +60,7 @@ namespace testCalc
             string JsonCompleto = o.ToString();
             return JsonCompleto;
         }
-        
+
         public static string conversion(string Id)
         {
             using (var algorithm = SHA512.Create()) //or MD5 SHA256 etc.
