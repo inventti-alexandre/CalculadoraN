@@ -6,7 +6,7 @@ namespace CalculadoraServidor.Models
     {
 
 
-        public static string RaizCuadrada(ObjSqr datos, string EviId)
+        public static object RaizCuadrada(ObjSqr datos, string EviId)
         {
 
             double DatosT = datos.GetNumber();

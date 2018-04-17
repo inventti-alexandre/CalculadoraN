@@ -6,7 +6,7 @@ namespace CalculadoraServidor.Models
     {
 
 
-        public static string dividir(ObjDiv datos, string EviId)
+        public static object dividir(ObjDiv datos, string EviId)
         {
             long dividendo = Convert.ToInt64(datos.GetDividend());
             long divisor = 1;

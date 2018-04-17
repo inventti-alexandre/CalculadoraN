@@ -6,7 +6,7 @@ namespace CalculadoraServidor.Models
     {
 
 
-        public static string sumar(Objsuma datosSuma, string EviId)
+        public static object sumar(Objsuma datosSuma, string EviId)
         {
             double[] DatosT = datosSuma.GetSumandos();
             double resultadoD = 0;

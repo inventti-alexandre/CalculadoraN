@@ -6,7 +6,7 @@ namespace CalculadoraServidor.Models
     {
 
 
-        public static string restar(ObjResta datosResta, string EviId)
+        public static object restar(ObjResta datosResta, string EviId)
         {
             double minuendo = datosResta.GetMinuend();
             double[] sustraendo = datosResta.GetSubtrahend();

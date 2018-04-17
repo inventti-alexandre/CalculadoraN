@@ -8,7 +8,7 @@ public class deserializeResponse
     /*Deserializaciones para json */
     public static string DeserializeSuma(string JsEntrada)
     {
-        JsEntrada = quitarEscapes(JsEntrada);
+        
         if (!JsEntrada.Contains("ErrorCode"))
         {
             respSuma ObjResult = JsonConvert.DeserializeObject<respSuma>(JsEntrada);
@@ -25,7 +25,7 @@ public class deserializeResponse
     {
         if (!JsEntrada.Contains("ErrorCode"))
         {
-            JsEntrada = quitarEscapes(JsEntrada);
+            
             respResta ObjResult = JsonConvert.DeserializeObject<respResta>(JsEntrada);
             return ($"El resultado es : { ObjResult.GetDiferencia()}");
         }
@@ -40,7 +40,7 @@ public class deserializeResponse
     {
         if (!JsEntrada.Contains("ErrorCode"))
         {
-            JsEntrada = quitarEscapes(JsEntrada);
+            
             respMult ObjResult = JsonConvert.DeserializeObject<respMult>(JsEntrada);
             return ($"El resultado es : {ObjResult.GetMultip()}");
         }
@@ -55,7 +55,7 @@ public class deserializeResponse
     {
         if (!JsEntrada.Contains("ErrorCode"))
         {
-            JsEntrada = quitarEscapes(JsEntrada);
+            
             respDiv ObjResult = JsonConvert.DeserializeObject<respDiv>(JsEntrada);
             return ($"El resultado es : {ObjResult.GetResultado()} Resto: {ObjResult.GetResto()}");
         }
@@ -69,7 +69,7 @@ public class deserializeResponse
 
     public static respSqr DeserializeSqrt(string JsEntrada)
     {
-        JsEntrada = quitarEscapes(JsEntrada);
+        
         respSqr ObjResult = JsonConvert.DeserializeObject<respSqr>(JsEntrada);
         return ObjResult;
     }
@@ -78,14 +78,13 @@ public class deserializeResponse
     public static string[] DeserializeResponseYConvertir(string JsEntrada)
     {
         try
-        {
-            JsEntrada = quitarSaltos(JsEntrada);
-            JsEntrada = quitarEscapes(JsEntrada);
-            List<respJournal> RespuestaOperaciones = JsonConvert.DeserializeObject<List<respJournal>>(JsEntrada);
-            string[] OperacionesString = new string[RespuestaOperaciones.Count];
-            for (int a = 0; a < RespuestaOperaciones.Count; a++)
+        {        
+            respJournalConjunta RespuestaOperaciones = JsonConvert.DeserializeObject<respJournalConjunta>(JsEntrada);
+            respJournal[] FilasOperaciones = RespuestaOperaciones.GetFilas();
+            string[] OperacionesString = new string[FilasOperaciones.Length];
+            for (int a = 0; a < FilasOperaciones.Length; a++)
             {
-                OperacionesString[a] = RespuestaOperaciones[a].GetFecha() + " || " + RespuestaOperaciones[a].GetOperacion() + " || " + RespuestaOperaciones[a].GetCalculo();
+                OperacionesString[a] = FilasOperaciones[a].GetFecha() + " || " + FilasOperaciones[a].GetOperacion() + " || " + FilasOperaciones[a].GetCalculo();
             }
             return OperacionesString;
         }
@@ -109,23 +108,10 @@ public class deserializeResponse
         }
     }
     /*En caso de que el json venga con saltos de linea o comillas extra método para quitarlas */
-    public static string quitarEscapes(string salida)
-    {
 
-        salida = salida.Replace("\\", string.Empty);
-        salida = salida.Trim('"');
-        return salida;
-    }
-    public static string quitarSaltos(string salida)
-    {
-        salida = salida.Replace("\\n", string.Empty);
-        salida = salida.Replace("\\r", string.Empty);
-        return salida;
-    }
 
     public static string CrearErrorMalDatos(string json)
     {
-        json = quitarEscapes(json);
         ErrorObj ObjResult = JsonConvert.DeserializeObject<ErrorObj>(json);
         return $"Error: {ObjResult.GetErrorMessage()}";
     }

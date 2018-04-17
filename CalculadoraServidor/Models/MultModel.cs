@@ -6,7 +6,7 @@ namespace CalculadoraServidor.Models
     {
 
 
-        public static string multiplicar(ObjMult datosMul, string EviId)
+        public static object multiplicar(ObjMult datosMul, string EviId)
         {
             double[] DatosT = datosMul.GetFactors();
             double resultadoD = 1;

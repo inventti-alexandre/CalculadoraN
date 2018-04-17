@@ -298,7 +298,9 @@ namespace Calculadora
             leido.Close();
             respuesta res = new respuesta();
             string salida = res.responder($"{servidor}/Calculator/Journal", JsonFinal, IdSesion);
+
             string[] SalidaOperaciones = deserializeResponse.DeserializeResponseYConvertir(salida);
+            
             Console.Clear();
             ImprimirDatos(SalidaOperaciones);
             continuar();

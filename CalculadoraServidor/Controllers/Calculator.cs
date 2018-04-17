@@ -29,7 +29,7 @@ namespace CalculadoraServidor.Controllers
         // Post a suma
 
         [HttpPost]
-        public string Add([FromBody]Objsuma datos)
+        public object Add([FromBody]Objsuma datos)
         {
             try{
             string IdEvi = Request.Headers[key: "X-Evi-Tracking-Id"];
@@ -52,7 +52,7 @@ namespace CalculadoraServidor.Controllers
         }
         // Post a resta
         [HttpPost]
-        public string Sub([FromBody]ObjResta datos)
+        public object Sub([FromBody]ObjResta datos)
         {
             string IdEvi = Request.Headers[key: "X-Evi-Tracking-Id"];
             if (datos.GetSubtrahend().Length > 0)
@@ -67,7 +67,7 @@ namespace CalculadoraServidor.Controllers
         }
         // Post a multiplicacion
         [HttpPost]
-        public string Mult([FromBody]ObjMult datos)
+        public object Mult([FromBody]ObjMult datos)
         {
             string IdEvi = Request.Headers[key: "X-Evi-Tracking-Id"];
             if (datos.GetFactors().Length > 1)
@@ -83,7 +83,7 @@ namespace CalculadoraServidor.Controllers
         }
         // Post a division
         [HttpPost]
-        public string Div([FromBody]ObjDiv datos)
+        public object Div([FromBody]ObjDiv datos)
         {
             string IdEvi = Request.Headers[key: "X-Evi-Tracking-Id"];
             if (datos.GetDivisor().Length > 0)
@@ -106,26 +106,25 @@ namespace CalculadoraServidor.Controllers
         }
         // Post a raiz cuadrada
         [HttpPost]
-        public string Sqrt([FromBody]ObjSqr datos)
+        public object Sqrt([FromBody]ObjSqr datos)
         {
             string IdEvi = Request.Headers[key: "X-Evi-Tracking-Id"];
             return SqrModel.RaizCuadrada(datos, IdEvi);
         }
         // Post a journal
         [HttpPost]
-        public string Journal([FromBody]ObjId EviId)
+        public object Journal([FromBody]ObjId EviId)
         {
-            string journal = JournalModel.PedirJournal(EviId.GetId());
 
             try
             {
-                JsonConvert.DeserializeObject<List<respJournal>>(journal);
-                return journal;
+                
+                return JournalModel.PedirJournal(EviId.GetId());;
             }
             catch (Exception)
             {
                 Response.StatusCode = 400;
-                return journal;
+                return crearJson.CrearError("Internal Error", "400", "Datos introducidos erróneos");
             }
 
         }
