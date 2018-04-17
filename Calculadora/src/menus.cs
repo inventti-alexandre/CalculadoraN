@@ -291,16 +291,13 @@ namespace Calculadora
             MemoryStream streamS = new MemoryStream();
             DataContractJsonSerializer conversor = new DataContractJsonSerializer(typeof(ObjId));
             conversor.WriteObject(streamS, objetoId);
-
             streamS.Position = 0;
             StreamReader leido = new StreamReader(streamS);
             String JsonFinal = leido.ReadToEnd();
             leido.Close();
             respuesta res = new respuesta();
             string salida = res.responder($"{servidor}/Calculator/Journal", JsonFinal, IdSesion);
-
             string[] SalidaOperaciones = deserializeResponse.DeserializeResponseYConvertir(salida);
-            
             Console.Clear();
             ImprimirDatos(SalidaOperaciones);
             continuar();

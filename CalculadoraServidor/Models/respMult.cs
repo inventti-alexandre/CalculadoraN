@@ -11,12 +11,10 @@ public class respMult
     {
         SetMultip(ResEn);
     }
-
     public double GetMultip()
     {
         return multip;
     }
-
     public void SetMultip(double value)
     {
         multip = value;

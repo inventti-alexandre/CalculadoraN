@@ -6,7 +6,6 @@ public class Objsuma
 {
     [DataMember(Name = "addens")]
     private double[] addens;
-
     public Objsuma(double[] sumandosEn)
     {
 
@@ -16,7 +15,6 @@ public class Objsuma
     {
         return addens;
     }
-
     public void SetSumandos(double[] value)
     {
         addens = value;

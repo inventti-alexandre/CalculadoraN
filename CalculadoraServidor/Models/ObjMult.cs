@@ -10,12 +10,10 @@ public class ObjMult
     {
         SetFactors(multiplicandos);
     }
-
     public double[] GetFactors()
     {
         return factors;
     }
-
     public void SetFactors(double[] value)
     {
         factors = value;

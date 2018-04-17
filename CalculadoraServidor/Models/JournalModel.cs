@@ -18,7 +18,7 @@ namespace CalculadoraServidor.Models
             respJournal[] ListadoOperaciones = new respJournal[0];
             for (int a = 0; a < 15; a++)
             {
-                
+
                 try
                 {
                     ListadoOperaciones = new respJournal[File.ReadLines(ruta).Count()];
@@ -41,14 +41,12 @@ namespace CalculadoraServidor.Models
                 /*Si el archivo no existe devuelve el error */
                 catch (Exception)
                 {
-                    
+
                 }
             }
             respJournalConjunta ObjetoOperacionesConjuntas = new respJournalConjunta(ListadoOperaciones);
             return ObjetoOperacionesConjuntas;
 
         }
-
-
     }
 }

@@ -4,8 +4,6 @@ namespace CalculadoraServidor.Models
     /*calculos de suma */
     public class AddModel
     {
-
-
         public static object sumar(Objsuma datosSuma, string EviId)
         {
             double[] DatosT = datosSuma.GetSumandos();
@@ -20,7 +18,6 @@ namespace CalculadoraServidor.Models
             OperacionSt = $"{OperacionSt}{resultadoD}";
             string tiempo = String.Format("{0:u}", DateTime.Now);
             saveInFile.GuardarOperaciones(EviId, OperacionSt, tiempo, "Sum");
-
             return crearJson.Crear(1, resultadoD);
 
         }

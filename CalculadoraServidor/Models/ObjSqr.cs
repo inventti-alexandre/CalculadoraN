@@ -15,7 +15,6 @@ public class ObjSqr
     {
         return number;
     }
-
     public void SetNumber(double value)
     {
         number = value;

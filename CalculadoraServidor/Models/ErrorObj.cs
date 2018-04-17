@@ -18,12 +18,10 @@ class ErrorObj
         SetErrorMessage(Mensaje);
         SetErrorStatus(Estado);
     }
-
     public string GetErrorMessage()
     {
         return ErrorMessage;
     }
-
     public void SetErrorMessage(string value)
     {
         ErrorMessage = value;
@@ -32,17 +30,14 @@ class ErrorObj
     {
         return ErrorStatus;
     }
-
     public void SetErrorStatus(string value)
     {
         ErrorStatus = value;
     }
-
     public string GetErrorCode()
     {
         return ErrorCode;
     }
-
     public void SetErrorCode(string value)
     {
         ErrorCode = value;

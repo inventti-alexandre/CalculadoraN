@@ -15,18 +15,16 @@ namespace CalculadoraServidor.Models
          */
         public static object Crear(int tipo, double resultadoD, double resultadoD2 = 0)
         {
-            object ResultadoObjeto ="";
+            object ResultadoObjeto = "";
             switch (tipo)
             {
                 case (1):
                     {
-
                         ResultadoObjeto = new respSuma(resultadoD);
                         break;
                     }
                 case (2):
                     {
-
                         ResultadoObjeto = new respResta(resultadoD);
                         break;
                     }
@@ -51,7 +49,7 @@ namespace CalculadoraServidor.Models
         /*Json devuelto en caso de error */
         public static object CrearError(string Codigo, string estado, string mensaje)
         {
-            ErrorObj ErrorDeDatos = new ErrorObj(Codigo, estado, mensaje);                   
+            ErrorObj ErrorDeDatos = new ErrorObj(Codigo, estado, mensaje);
             return ErrorDeDatos;
         }
     }

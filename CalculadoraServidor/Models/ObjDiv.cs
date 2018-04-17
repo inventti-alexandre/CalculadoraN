@@ -14,22 +14,18 @@ public class ObjDiv
         SetDividend(dividendo);
         SetDivisor(divisor);
     }
-
     public double GetDividend()
     {
         return dividend;
     }
-
     public void SetDividend(double value)
     {
         dividend = value;
     }
-
     public double[] GetDivisor()
     {
         return divisor;
     }
-
     public void SetDivisor(double[] value)
     {
         divisor = value;

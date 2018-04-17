@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 namespace CalculadoraServidor.Controllers
 {
 
-    public class Calculator : Controller
+    public class CalculatorController : Controller
     {
 
 
@@ -48,7 +48,6 @@ namespace CalculadoraServidor.Controllers
                 Response.StatusCode =500;
                 return crearJson.CrearError("Error inesperado","500","Error inesperado en el servidor");
             }
-
         }
         // Post a resta
         [HttpPost]
@@ -79,7 +78,6 @@ namespace CalculadoraServidor.Controllers
                 Response.StatusCode = 400;
                 return crearJson.CrearError("Internal Error", "400", "Datos introducidos erróneos");
             }
-
         }
         // Post a division
         [HttpPost]
@@ -115,7 +113,6 @@ namespace CalculadoraServidor.Controllers
         [HttpPost]
         public object Journal([FromBody]ObjId EviId)
         {
-
             try
             {
                 
@@ -128,10 +125,5 @@ namespace CalculadoraServidor.Controllers
             }
 
         }
-
-
-
-
-
     }
 }

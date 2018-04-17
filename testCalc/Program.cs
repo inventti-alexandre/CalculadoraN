@@ -10,8 +10,8 @@ namespace testCalc
         static void Main(string[] args)
         {
             Random rnd = new Random();
-            
-            string id = conversion("a1");
+
+            string id = conversion("patata2");
             string id2 = conversion("a3");
             string servidor = "http://localhost:5000";
             string jsonSuma = crearJson(rnd);
@@ -19,32 +19,32 @@ namespace testCalc
             string jsonSuma3 = crearJson(rnd);
             string jsonConsulta = crearJsonJournal(id);
             string jsonConsulta2 = crearJsonJournal(id2);
-           
+
 
             llamadas[] ListaLlamadas = new llamadas[5];
-            for(int a = 0; a < 5; a++)
+            for (int a = 0; a < 5; a++)
             {
-            ListaLlamadas[a] = new llamadas();
+                ListaLlamadas[a] = new llamadas();
             }
             /*Test de soporte de carga de servidor */
-            for(int a = 0; a < 1000; a++)
+            while (true)
             {
-                ListaLlamadas[0].responder($"{servidor}/Calculator/Add", jsonSuma, id);               
-                ListaLlamadas[1].responder($"{servidor}/Calculator/Add", jsonSuma2, id);
-                ListaLlamadas[3].responder($"{servidor}/Calculator/Journal", jsonConsulta, id);                
-                ListaLlamadas[1].responder($"{servidor}/Calculator/Add", jsonSuma3, id);
-                ListaLlamadas[4].responder($"{servidor}/Calculator/Journal", jsonConsulta2, id);
-                Thread.Sleep(50);
-                
-                
+                for (int a = 0; a < 1000; a++)
+                {
+                    ListaLlamadas[0].responder($"{servidor}/Calculator/Add", crearJson(rnd), id);
+                    ListaLlamadas[1].responder($"{servidor}/Calculator/Add", crearJson(rnd), id);
+                    ListaLlamadas[3].responder($"{servidor}/Calculator/Journal", jsonConsulta, id);
+                    ListaLlamadas[1].responder($"{servidor}/Calculator/Add", crearJson(rnd), id);
+                    ListaLlamadas[4].responder($"{servidor}/Calculator/Journal", jsonConsulta2, id);
+                    Thread.Sleep(50);
+                }
             }
-
 
         }
         public static string crearJson(Random rnd)
         {
             JArray array = new JArray();
-            array.Add( rnd.Next(1, 100));
+            array.Add(rnd.Next(1, 100));
             array.Add(rnd.Next(1, 100));
             array.Add(rnd.Next(1, 100));
             array.Add(rnd.Next(1, 100));
@@ -60,9 +60,8 @@ namespace testCalc
             string JsonCompleto = o.ToString();
             return JsonCompleto;
         }
-
-
-         public static string conversion(string Id)
+        
+        public static string conversion(string Id)
         {
             using (var algorithm = SHA512.Create()) //or MD5 SHA256 etc.
             {

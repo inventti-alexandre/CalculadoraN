@@ -13,17 +13,12 @@ public class ObjResta
     public ObjResta(double minuendo, double[] sustraendo)
     {
         SetMinuend(minuendo);
-
-
-
         SetSubtrahend(sustraendo);
     }
-
     public double GetMinuend()
     {
         return minuend;
     }
-
     public void SetMinuend(double value)
     {
         minuend = value;

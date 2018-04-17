@@ -15,7 +15,6 @@ public class ObjId
     {
         return Id;
     }
-
     public void SetId(string value)
     {
         Id = value;

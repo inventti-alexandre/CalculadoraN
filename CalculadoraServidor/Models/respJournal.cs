@@ -28,12 +28,10 @@ class respJournal
     {
         fecha = value;
     }
-
     public string GetCalculo()
     {
         return calculo;
     }
-
     public void SetCalculo(string value)
     {
         calculo = value;

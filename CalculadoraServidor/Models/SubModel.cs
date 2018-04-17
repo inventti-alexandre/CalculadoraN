@@ -21,7 +21,6 @@ namespace CalculadoraServidor.Models
             string tiempo = String.Format("{0:u}", DateTime.Now);
             saveInFile.GuardarOperaciones(EviId, OperacionSt, tiempo, "Res");
             return crearJson.Crear(2, minuendo);
-
         }
     }
 }
