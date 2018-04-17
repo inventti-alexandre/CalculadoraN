@@ -17,6 +17,7 @@ namespace CalculadoraServidor.Models
             los que el fichero este ya en uso */
             for (int a = 0; a < 15; a++)
             {
+                Console.WriteLine(a);
                 try
                 {
                     List<respJournal> ListadoOperaciones = new List<respJournal>();
@@ -33,12 +34,12 @@ namespace CalculadoraServidor.Models
                         }
                     }
                     JsonSerializado = JsonConvert.SerializeObject(ListadoOperaciones, Formatting.Indented);
-                    a = 10;
+                    a = 15;
                 }
                 /*Si el archivo no existe devuelve el error */
                 catch (Exception)
                 {
-                    if (a > 8) JsonSerializado = crearJson.CrearError("Internal Error", "400", "No se pudo abrir el fichero del usuario");
+                    if (a > 13) JsonSerializado = crearJson.CrearError("Internal Error", "400", "No se pudo abrir el fichero del usuario");
                     System.Threading.Thread.Sleep(200);
                 }
             }
@@ -47,7 +48,6 @@ namespace CalculadoraServidor.Models
             JsonSerializado = JsonSerializado.Replace("\\", string.Empty);
             JsonSerializado = JsonSerializado.Trim('"');
             return JsonSerializado;
-
         }
 
 

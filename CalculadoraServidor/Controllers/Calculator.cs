@@ -31,6 +31,7 @@ namespace CalculadoraServidor.Controllers
         [HttpPost]
         public string Add([FromBody]Objsuma datos)
         {
+            try{
             string IdEvi = Request.Headers[key: "X-Evi-Tracking-Id"];
             if (datos.GetSumandos().Length > 1)
             {
@@ -40,6 +41,12 @@ namespace CalculadoraServidor.Controllers
             {
                 Response.StatusCode = 400;
                 return crearJson.CrearError("Internal Error", "400", "Datos introducidos erróneos");
+            }
+            }
+            catch(Exception)
+            {
+                Response.StatusCode =500;
+                return crearJson.CrearError("Error inesperado","500","Error inesperado en el servidor");
             }
 
         }

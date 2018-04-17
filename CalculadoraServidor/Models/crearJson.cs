@@ -79,8 +79,6 @@ namespace CalculadoraServidor.Models
             sr.Close();
             return JsonFinal;
         }
-
-
     }
 }
 
