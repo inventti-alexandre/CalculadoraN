@@ -8,10 +8,11 @@ using Microsoft.AspNetCore.Diagnostics;
 
 namespace CalculadoraServidor.Controllers
 {
-    [HandleException]
+
+
     public class CalculatorController : Controller
     {
-        
+
         /*
         Cada controlador comprueba que las datos sean correctos, si lo son cada modelo se encarga del calculo
         en caso de que no lo sea devuelve un error 400 con la info en el json
@@ -21,17 +22,16 @@ namespace CalculadoraServidor.Controllers
         [HttpPost]
         public JsonResult Add([FromBody]ObjSuma datos)
         {
-            
-                string IdEvi = Request.Headers[key: "X-Evi-Tracking-Id"];
-                if (datos.addens.Length > 1)
-                {
-                    return Json(AddModel.sumar(datos, IdEvi));
-                }
-                else
-                {
-                    Response.StatusCode = 400;
-                    return Json(crearJson.CrearError("Internal Error", "400", "Datos introducidos erróneos"));
-                }
+
+            string IdEvi = Request.Headers[key: "X-Evi-Tracking-Id"];
+            if (datos.addens.Length > 1)
+            {
+                return Json(AddModel.sumar(datos, IdEvi));
+            }
+            else
+            {
+                return ErrorDatos();
+            }
         }
         // Post a resta
         [HttpPost]
@@ -44,8 +44,7 @@ namespace CalculadoraServidor.Controllers
             }
             else
             {
-                Response.StatusCode = 400;
-                return Json(crearJson.CrearError("Internal Error", "400", "Datos introducidos erróneos"));
+                return ErrorDatos();
             }
         }
         // Post a multiplicacion
@@ -59,8 +58,7 @@ namespace CalculadoraServidor.Controllers
             }
             else
             {
-                Response.StatusCode = 400;
-                return Json(crearJson.CrearError("Internal Error", "400", "Datos introducidos erróneos"));
+                return ErrorDatos();
             }
         }
         // Post a division
@@ -69,13 +67,12 @@ namespace CalculadoraServidor.Controllers
         {
             string IdEvi = Request.Headers[key: "X-Evi-Tracking-Id"];
             if (datos.GetDivisor().Length > 0)
-            {           
-                    return Json(DivModel.dividir(datos, IdEvi));                          
+            {
+                return Json(DivModel.dividir(datos, IdEvi));
             }
             else
             {
-                Response.StatusCode = 400;
-                return Json(crearJson.CrearError("Internal Error", "400", "Datos introducidos erróneos"));
+                return ErrorDatos();
             }
         }
         // Post a raiz cuadrada
@@ -95,8 +92,7 @@ namespace CalculadoraServidor.Controllers
             }
             else
             {
-                Response.StatusCode = 400;
-                return Json(crearJson.CrearError("Internal Error", "400", "El fichero no existe"));
+                return ErrorDatos("No existen datos de ese usuario");
             }
         }
 
@@ -104,6 +100,11 @@ namespace CalculadoraServidor.Controllers
         public JsonResult Error()
         {
             return Json(crearJson.CrearError("Internal Error", "500", "Error interno"));
+        }
+        public JsonResult ErrorDatos(string mensaje = "Datos introducidos no válidos")
+        {
+            Response.StatusCode = 400;
+            return Json(crearJson.CrearError("Bad Request", "400", mensaje));
         }
     }
 }

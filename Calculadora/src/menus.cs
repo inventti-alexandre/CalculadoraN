@@ -121,7 +121,7 @@ namespace Calculadora
                                 var salida = res.responder($"{servidor}/Calculator/Add", JsonFinal, IdSesion);
                                 Console.Clear();
                                 var Respuesta = deserializeResponse.DeserializeSuma(salida);
-                                Console.WriteLine(Respuesta);
+                                Console.WriteLine(Respuesta.ToString());
                                 continuar();
                             }
                             catch (Exception)

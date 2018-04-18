@@ -106,7 +106,6 @@ public class deserializeResponse
     {
         
         var objetoResultado = JsonConvert.DeserializeObject<ErrorObj>(json);
-        Console.WriteLine(objetoResultado.ToString());
-        return $"Error: {objetoResultado.errorMessage}";
+        return $"Error: {objetoResultado.ToString()}";
     }
 }
