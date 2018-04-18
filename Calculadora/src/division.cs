@@ -1,38 +1,19 @@
 using System.Runtime.Serialization;
 
 /*Objeto para serializar el envío de la división */
-[DataContract(Name = "division")]
 public class division
 {
-    [DataMember(Name = "Dividend")]
-    private double dividend;
+    public double dividend { get; set; }
 
-    [DataMember(Name = "Divisor")]
-    private double[] divisor;
+    public double[] divisor { get; set; }
 
-    public division(double dividendo, double[] divisor)
+    public division(double dividendo, double[] divisorEntrada)
     {
-        SetDividend(dividendo);
-        SetDivisor(divisor);
+        dividend = dividendo;
+        divisor = divisorEntrada;
     }
-
-    public double GetDividend()
+    public division()
     {
-        return dividend;
-    }
-
-    public void SetDividend(double value)
-    {
-        dividend = value;
-    }
-
-    public double[] GetDivisor()
-    {
-        return divisor;
-    }
-
-    public void SetDivisor(double[] value)
-    {
-        divisor = value;
+        
     }
 }

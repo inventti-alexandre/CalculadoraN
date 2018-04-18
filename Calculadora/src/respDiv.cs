@@ -1,39 +1,13 @@
-using System.Runtime.Serialization;
-/*Objeto para deserializar la respuesta del servidor a la petición de dividir */
-
-[DataContract(Name = "ResDiv")]
-
 public class respDiv
 {
-    [DataMember(Name = "Quotient")]
-    private double Resultado;
-
-    [DataMember(Name = "Remainder")]
-    private double Resto;
+    public double quotient { get; set; }
+    public double remainder { get; set; }
 
     public respDiv(double ResEn, double ResEn2)
     {
-        SetResultado(ResEn);
-        SetResto(ResEn2);
+        quotient = ResEn;
+        remainder = ResEn2;
     }
-
-    public double GetResultado()
-    {
-        return Resultado;
-    }
-
-    public void SetResultado(double value)
-    {
-        Resultado = value;
-    }
-
-    public double GetResto()
-    {
-        return Resto;
-    }
-
-    public void SetResto(double value)
-    {
-        Resto = value;
-    }
+    public respDiv()
+    { }
 }

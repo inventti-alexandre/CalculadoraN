@@ -1,25 +1,12 @@
 
-using System.Runtime.Serialization;
-/*Objeto para serializar el id que se envía a la petición de journal */
-
-[DataContract(Name = "Evi-Id")]
 public class ObjId
 {
-    [DataMember(Name = "Id")]
-    private string Id;
+    public string id { get; set; }
 
-    public ObjId(string id)
+    public ObjId()
+    { }
+    public ObjId(string idEntrada)
     {
-        SetId(id);
-    }
-
-    public string GetId()
-    {
-        return Id;
-    }
-
-    public void SetId(string value)
-    {
-        Id = value;
+        id = idEntrada;
     }
 }

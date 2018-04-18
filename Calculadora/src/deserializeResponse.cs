@@ -1,6 +1,6 @@
 
 using System;
-using System.Collections.Generic;
+
 using Newtonsoft.Json;
 public class deserializeResponse
 {
@@ -8,10 +8,10 @@ public class deserializeResponse
     public static string DeserializeSuma(string JsEntrada)
     {
 
-        if (!JsEntrada.Contains("ErrorCode"))
+        if (!JsEntrada.Contains("errorCode"))
         {
-            respSuma ObjResult = JsonConvert.DeserializeObject<respSuma>(JsEntrada);
-            return ($"El resultado es : {ObjResult.GetSum()}");
+            var objetoResultado = JsonConvert.DeserializeObject<respSuma>(JsEntrada);
+            return ($"El resultado es : {objetoResultado.GetSum()}");
         }
         else
         {
@@ -21,10 +21,10 @@ public class deserializeResponse
     }
     public static string DeserializeResta(string JsEntrada)
     {
-        if (!JsEntrada.Contains("ErrorCode"))
+        if (!JsEntrada.Contains("errorCode"))
         {
-            respResta ObjResult = JsonConvert.DeserializeObject<respResta>(JsEntrada);
-            return ($"El resultado es : { ObjResult.GetDiferencia()}");
+            var objetoResultado = JsonConvert.DeserializeObject<respResta>(JsEntrada);
+            return ($"El resultado es : { objetoResultado.GetDiferencia()}");
         }
         else
         {
@@ -35,10 +35,10 @@ public class deserializeResponse
 
     public static string DeserializeMult(string JsEntrada)
     {
-        if (!JsEntrada.Contains("ErrorCode"))
+        if (!JsEntrada.Contains("errorCode"))
         {
-            respMult ObjResult = JsonConvert.DeserializeObject<respMult>(JsEntrada);
-            return ($"El resultado es : {ObjResult.GetMultip()}");
+            var objetoResultado = JsonConvert.DeserializeObject<respMult>(JsEntrada);
+            return ($"El resultado es : {objetoResultado.GetMultip()}");
         }
         else
         {
@@ -49,10 +49,10 @@ public class deserializeResponse
 
     public static string DeserializeDiv(string JsEntrada)
     {
-        if (!JsEntrada.Contains("ErrorCode"))
+        if (!JsEntrada.Contains("errorCode"))
         {
-            respDiv ObjResult = JsonConvert.DeserializeObject<respDiv>(JsEntrada);
-            return ($"El resultado es : {ObjResult.GetResultado()} Resto: {ObjResult.GetResto()}");
+            var objetoResultado = JsonConvert.DeserializeObject<respDiv>(JsEntrada);
+            return ($"El resultado es : {objetoResultado.quotient} Resto: {objetoResultado.remainder}");
         }
         else
         {
@@ -64,8 +64,8 @@ public class deserializeResponse
 
     public static respSqr DeserializeSqrt(string JsEntrada)
     {
-        respSqr ObjResult = JsonConvert.DeserializeObject<respSqr>(JsEntrada);
-        return ObjResult;
+        var objetoResultado = JsonConvert.DeserializeObject<respSqr>(JsEntrada);
+        return objetoResultado;
     }
 
     /*Deserialización a la respuesta de la petición al journal*/
@@ -73,24 +73,24 @@ public class deserializeResponse
     {
         try
         {
-            respJournalConjunta RespuestaOperaciones = JsonConvert.DeserializeObject<respJournalConjunta>(JsEntrada);
-            respJournal[] FilasOperaciones = RespuestaOperaciones.GetFilas();
-            string[] OperacionesString = new string[FilasOperaciones.Length];
-            for (int a = 0; a < FilasOperaciones.Length; a++)
+            var respuestaResultado = JsonConvert.DeserializeObject<respJournalConjunta>(JsEntrada);
+            var filasDeOperaciones = respuestaResultado.GetFilas();
+            var OperacionesString = new string[filasDeOperaciones.Length];
+            for (var a = 0; a < filasDeOperaciones.Length; a++)
             {
-                OperacionesString[a] = FilasOperaciones[a].GetFecha() + " || " + FilasOperaciones[a].GetOperacion() + " || " + FilasOperaciones[a].GetCalculo();
+                OperacionesString[a] = filasDeOperaciones[a].ToString();
             }
             return OperacionesString;
         }
         catch (Exception)
         {
-            string[] error = new string[3];
+            var error = new string[3];
             try
             {
-                ErrorObj ObjResult = JsonConvert.DeserializeObject<ErrorObj>(JsEntrada);
-                error[0] = $"Code: {ObjResult.GetErrorCode()}";
-                error[1] = $"Status: {ObjResult.GetErrorStatus()}";
-                error[2] = $"Message: {ObjResult.GetErrorMessage()}";
+                var objetoResultado = JsonConvert.DeserializeObject<ErrorObj>(JsEntrada);
+                error[0] = $"Code: {objetoResultado.errorCode}";
+                error[1] = $"Status: {objetoResultado.errorStatus}";
+                error[2] = $"Message: {objetoResultado.errorMessage}";
             }
             catch (Exception)
             {
@@ -104,7 +104,9 @@ public class deserializeResponse
 
     public static string CrearErrorMalDatos(string json)
     {
-        ErrorObj ObjResult = JsonConvert.DeserializeObject<ErrorObj>(json);
-        return $"Error: {ObjResult.GetErrorMessage()}";
+        
+        var objetoResultado = JsonConvert.DeserializeObject<ErrorObj>(json);
+        Console.WriteLine(objetoResultado.ToString());
+        return $"Error: {objetoResultado.errorMessage}";
     }
 }

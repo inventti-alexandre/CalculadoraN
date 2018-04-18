@@ -7,19 +7,16 @@ using Microsoft.Net.Http.Headers;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Linq;
 
 namespace CalculadoraServidor.Controllers
 {
 
     public class CalculatorController : Controller
     {
-
-
-
         public string Index()
         {
             return "Código por defecto";
-
         }
 
         /*
@@ -29,99 +26,100 @@ namespace CalculadoraServidor.Controllers
         // Post a suma
 
         [HttpPost]
-        public object Add([FromBody]Objsuma datos)
+        public JsonResult Add([FromBody]Objsuma datos)
         {
             try{
             string IdEvi = Request.Headers[key: "X-Evi-Tracking-Id"];
             if (datos.GetSumandos().Length > 1)
             {
-                return AddModel.sumar(datos, IdEvi);
+                return Json(AddModel.sumar(datos, IdEvi));
             }
             else
             {
                 Response.StatusCode = 400;
-                return crearJson.CrearError("Internal Error", "400", "Datos introducidos erróneos");
+                return Json(crearJson.CrearError("Internal Error", "400", "Datos introducidos erróneos"));
             }
             }
             catch(Exception)
             {
                 Response.StatusCode =500;
-                return crearJson.CrearError("Error inesperado","500","Error inesperado en el servidor");
+                return Json(crearJson.CrearError("Error inesperado","500","Error inesperado en el servidor"));
             }
         }
         // Post a resta
         [HttpPost]
-        public object Sub([FromBody]ObjResta datos)
+        public JsonResult Sub([FromBody]ObjResta datos)
         {
             string IdEvi = Request.Headers[key: "X-Evi-Tracking-Id"];
             if (datos.GetSubtrahend().Length > 0)
             {
-                return SubModel.restar(datos, IdEvi);
+                return Json(SubModel.restar(datos, IdEvi));
             }
             else
             {
                 Response.StatusCode = 400;
-                return crearJson.CrearError("Internal Error", "400", "Datos introducidos erróneos");
+                return Json(crearJson.CrearError("Internal Error", "400", "Datos introducidos erróneos"));
             }
         }
         // Post a multiplicacion
         [HttpPost]
-        public object Mult([FromBody]ObjMult datos)
+        public JsonResult Mult([FromBody]ObjMult datos)
         {
             string IdEvi = Request.Headers[key: "X-Evi-Tracking-Id"];
-            if (datos.GetFactors().Length > 1)
+            if (datos.factors.Length > 1)
             {
-                return MultModel.multiplicar(datos, IdEvi);
+                return Json(MultModel.multiplicar(datos, IdEvi));
             }
             else
             {
                 Response.StatusCode = 400;
-                return crearJson.CrearError("Internal Error", "400", "Datos introducidos erróneos");
+                return Json(crearJson.CrearError("Internal Error", "400", "Datos introducidos erróneos"));
             }
         }
         // Post a division
         [HttpPost]
-        public object Div([FromBody]ObjDiv datos)
+        public JsonResult Div([FromBody]ObjDiv datos)
         {
             string IdEvi = Request.Headers[key: "X-Evi-Tracking-Id"];
             if (datos.GetDivisor().Length > 0)
             {
                 try
                 {
-                    return DivModel.dividir(datos, IdEvi);
+                    return Json(DivModel.dividir(datos, IdEvi));
                 }
                 catch (Exception)
                 {
                     Response.StatusCode = 400;
-                    return crearJson.CrearError("Internal Error", "400", "Division entre 0");
+                    return Json(crearJson.CrearError("Internal Error", "400", "Division entre 0"));
                 }
             }
             else
             {
                 Response.StatusCode = 400;
-                return crearJson.CrearError("Internal Error", "400", "Datos introducidos erróneos");
+                return Json(crearJson.CrearError("Internal Error", "400", "Datos introducidos erróneos"));
             }
         }
         // Post a raiz cuadrada
         [HttpPost]
-        public object Sqrt([FromBody]ObjSqr datos)
+        public JsonResult Sqrt([FromBody]ObjSqr datos)
         {
             string IdEvi = Request.Headers[key: "X-Evi-Tracking-Id"];
-            return SqrModel.RaizCuadrada(datos, IdEvi);
+            return Json(SqrModel.RaizCuadrada(datos, IdEvi));
         }
         // Post a journal
         [HttpPost]
-        public object Journal([FromBody]ObjId EviId)
+        public JsonResult Journal([FromBody]ObjId EviId)
         {
             try
             {
                 
-                return JournalModel.PedirJournal(EviId.GetId());;
+                return Json(JournalModel.PedirJournal(EviId.id));
             }
             catch (Exception)
             {
                 Response.StatusCode = 400;
-                return crearJson.CrearError("Internal Error", "400", "Datos introducidos erróneos");
+                
+                return Json(crearJson.CrearError("Internal Error", "400", "Datos introducidos erróneos"));
             }
 
         }

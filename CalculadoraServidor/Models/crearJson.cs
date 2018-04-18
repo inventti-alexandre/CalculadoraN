@@ -1,6 +1,8 @@
 using System;
 using System.Runtime.Serialization.Json;
 using System.IO;
+using Microsoft.AspNetCore.Mvc;
+
 namespace CalculadoraServidor.Models
 {
     public class crearJson
@@ -46,6 +48,7 @@ namespace CalculadoraServidor.Models
             }
             return ResultadoObjeto;
         }
+
         /*Json devuelto en caso de error */
         public static object CrearError(string Codigo, string estado, string mensaje)
         {

@@ -208,6 +208,7 @@ namespace Calculadora
                                 String JsonFinal = serializador(conversor, streamS);
                                 respuesta res = new respuesta();
                                 Console.Clear();
+                                Console.WriteLine(JsonFinal);
                                 string salida = res.responder($"{servidor}/Calculator/Div", JsonFinal, IdSesion);
                                 string Respuesta = deserializeResponse.DeserializeDiv(salida);
                                 Console.WriteLine(Respuesta);

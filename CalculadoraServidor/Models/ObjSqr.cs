@@ -1,22 +1,10 @@
-using System.Runtime.Serialization;
-
-/*Objeto deserializar raiz cuadrada */
-[DataContract(Name = "raiz_cuadrada")]
 public class ObjSqr
 {
-    [DataMember(Name = "Number")]
-    private double number;
-
+    public double number { get; set; }
     public ObjSqr(double numeroEn)
     {
-        SetNumber(numeroEn);
+        number = numeroEn;
     }
-    public double GetNumber()
-    {
-        return number;
-    }
-    public void SetNumber(double value)
-    {
-        number = value;
-    }
+    public ObjSqr()
+    { }
 }

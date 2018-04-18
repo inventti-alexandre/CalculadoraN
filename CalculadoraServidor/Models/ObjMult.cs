@@ -1,21 +1,12 @@
 using System.Runtime.Serialization;
-/*Objeto deserializar multiplicación */
-[DataContract(Name = "multiplicacion")]
+/*Objetot para serializar el envío de la multiplicación */
 public class ObjMult
 {
-    [DataMember(Name = "factors")]
-    private double[] factors;
-
-    public ObjMult(double[] multiplicandos)
+    public double[] factors { get; set; }
+    public ObjMult()
+    { }
+    public ObjMult(double[] factores)
     {
-        SetFactors(multiplicandos);
-    }
-    public double[] GetFactors()
-    {
-        return factors;
-    }
-    public void SetFactors(double[] value)
-    {
-        factors = value;
+        factors = factores;
     }
 }

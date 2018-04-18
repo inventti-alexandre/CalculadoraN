@@ -6,7 +6,7 @@ namespace CalculadoraServidor.Models
     {
         public static object RaizCuadrada(ObjSqr datos, string EviId)
         {
-            double DatosT = datos.GetNumber();
+            double DatosT = datos.number;
             double resultado = Math.Sqrt(DatosT);
             string OperacionSt = $"{DatosT} Sqrt = {resultado}";
             string tiempo = String.Format("{0:u}", DateTime.Now);

@@ -1,45 +1,18 @@
-
 using System.Runtime.Serialization;
-/*Objeto para serializar error y enviarlo al cliente */
-[DataContract(Name = "Error")]
+/*Objeto para deserializar respuesta de error */
 class ErrorObj
 {
-    [DataMember(Name = "ErrorCode")]
-    private string ErrorCode;
-    [DataMember(Name = "ErrorStatus")]
-    private string ErrorStatus;
-    [DataMember(Name = "ErrorMessage")]
-    private string ErrorMessage;
+    public string errorCode { get; set; }
+    public string errorStatus { get; set; }
+    public string errorMessage { get; set; }
+    public ErrorObj()
+    {
 
-
-    public ErrorObj(string Code, string Estado, string Mensaje)
-    {
-        SetErrorCode(Code);
-        SetErrorMessage(Mensaje);
-        SetErrorStatus(Estado);
     }
-    public string GetErrorMessage()
+    public ErrorObj(string code, string status, string message)
     {
-        return ErrorMessage;
-    }
-    public void SetErrorMessage(string value)
-    {
-        ErrorMessage = value;
-    }
-    public string GetErrorStatus()
-    {
-        return ErrorStatus;
-    }
-    public void SetErrorStatus(string value)
-    {
-        ErrorStatus = value;
-    }
-    public string GetErrorCode()
-    {
-        return ErrorCode;
-    }
-    public void SetErrorCode(string value)
-    {
-        ErrorCode = value;
+        errorCode = code;
+        errorStatus = status;
+        errorMessage = message;
     }
 }

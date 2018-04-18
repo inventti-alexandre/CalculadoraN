@@ -8,7 +8,7 @@ namespace CalculadoraServidor.Models
 
         public static object multiplicar(ObjMult datosMul, string EviId)
         {
-            double[] DatosT = datosMul.GetFactors();
+            double[] DatosT = datosMul.factors;
             double resultadoD = 1;
             string OperacionSt = "";
             for (var a = 0; a < DatosT.Length; a++)
