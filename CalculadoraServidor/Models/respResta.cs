@@ -1,24 +1,11 @@
-using System.Runtime.Serialization;
-
-/*Objeto serialización de resta */
-[DataContract(Name = "ResResta")]
 public class respResta
 {
-    [DataMember(Name = "Difference")]
-    private double diferencia;
+    public double difference { get; set; }
 
     public respResta(double ResEn)
     {
-        SetDiferencia(ResEn);
+        difference = ResEn;
     }
-
-    public double GetDiferencia()
-    {
-        return diferencia;
-    }
-
-    public void SetDiferencia(double value)
-    {
-        diferencia = value;
-    }
+    public respResta()
+    { }
 }

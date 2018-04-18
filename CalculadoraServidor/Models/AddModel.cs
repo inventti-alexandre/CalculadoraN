@@ -4,9 +4,9 @@ namespace CalculadoraServidor.Models
     /*calculos de suma */
     public class AddModel
     {
-        public static object sumar(Objsuma datosSuma, string EviId)
+        public static object sumar(ObjSuma datosSuma, string EviId)
         {
-            double[] DatosT = datosSuma.GetSumandos();
+            double[] DatosT = datosSuma.addens;
             double resultadoD = 0;
             string OperacionSt = "";
             for (var a = 0; a < DatosT.Length; a++)

@@ -1,24 +1,10 @@
-using System.Runtime.Serialization;
-
-/*Objeto serialización de resta */
-[DataContract(Name = "ResSum")]
 public class respSuma
 {
-    [DataMember(Name = "Sum")]
-    private double Sum;
-
+    public double Sum { get; set; }
     public respSuma(double ResEn)
     {
-        SetSum1(ResEn);
+        Sum = ResEn;
     }
-
-    public double GetSum1()
-    {
-        return Sum;
-    }
-
-    public void SetSum1(double value)
-    {
-        Sum = value;
-    }
+    public respSuma()
+    { }
 }

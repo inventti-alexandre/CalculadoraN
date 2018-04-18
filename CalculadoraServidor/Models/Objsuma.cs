@@ -1,24 +1,11 @@
-using System.Runtime.Serialization;
-
-/*Objeto deserializar suma */
-[DataContract(Name = "suma")]
-public class Objsuma
+public class ObjSuma
 {
-    [DataMember(Name = "addens")]
-    private double[] addens;
-    public Objsuma(double[] sumandosEn)
-    {
+    public double[] addens { get; set; }
 
+    public ObjSuma(double[] sumandosEn)
+    {
         addens = sumandosEn;
     }
-    public double[] GetSumandos()
-    {
-        return addens;
-    }
-    public void SetSumandos(double[] value)
-    {
-        addens = value;
-    }
-
-
+    public ObjSuma()
+    { }
 }

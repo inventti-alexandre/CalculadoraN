@@ -26,24 +26,25 @@ namespace CalculadoraServidor.Controllers
         // Post a suma
 
         [HttpPost]
-        public JsonResult Add([FromBody]Objsuma datos)
+        public JsonResult Add([FromBody]ObjSuma datos)
         {
-            try{
-            string IdEvi = Request.Headers[key: "X-Evi-Tracking-Id"];
-            if (datos.GetSumandos().Length > 1)
+            try
             {
-                return Json(AddModel.sumar(datos, IdEvi));
+                string IdEvi = Request.Headers[key: "X-Evi-Tracking-Id"];
+                if (datos.addens.Length > 1)
+                {
+                    return Json(AddModel.sumar(datos, IdEvi));
+                }
+                else
+                {
+                    Response.StatusCode = 400;
+                    return Json(crearJson.CrearError("Internal Error", "400", "Datos introducidos erróneos"));
+                }
             }
-            else
+            catch (Exception)
             {
-                Response.StatusCode = 400;
-                return Json(crearJson.CrearError("Internal Error", "400", "Datos introducidos erróneos"));
-            }
-            }
-            catch(Exception)
-            {
-                Response.StatusCode =500;
-                return Json(crearJson.CrearError("Error inesperado","500","Error inesperado en el servidor"));
+                Response.StatusCode = 500;
+                return Json(crearJson.CrearError("Error inesperado", "500", "Error inesperado en el servidor"));
             }
         }
         // Post a resta
@@ -51,7 +52,7 @@ namespace CalculadoraServidor.Controllers
         public JsonResult Sub([FromBody]ObjResta datos)
         {
             string IdEvi = Request.Headers[key: "X-Evi-Tracking-Id"];
-            if (datos.GetSubtrahend().Length > 0)
+            if (datos.subtrahend.Length > 0)
             {
                 return Json(SubModel.restar(datos, IdEvi));
             }
@@ -112,13 +113,13 @@ namespace CalculadoraServidor.Controllers
         {
             try
             {
-                
+
                 return Json(JournalModel.PedirJournal(EviId.id));
             }
             catch (Exception)
             {
                 Response.StatusCode = 400;
-                
+
                 return Json(crearJson.CrearError("Internal Error", "400", "Datos introducidos erróneos"));
             }
 

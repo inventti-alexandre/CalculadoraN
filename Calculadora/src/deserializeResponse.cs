@@ -11,7 +11,7 @@ public class deserializeResponse
         if (!JsEntrada.Contains("errorCode"))
         {
             var objetoResultado = JsonConvert.DeserializeObject<respSuma>(JsEntrada);
-            return ($"El resultado es : {objetoResultado.GetSum()}");
+            return ($"El resultado es : {objetoResultado.Sum}");
         }
         else
         {
@@ -24,7 +24,7 @@ public class deserializeResponse
         if (!JsEntrada.Contains("errorCode"))
         {
             var objetoResultado = JsonConvert.DeserializeObject<respResta>(JsEntrada);
-            return ($"El resultado es : { objetoResultado.GetDiferencia()}");
+            return ($"El resultado es : { objetoResultado.difference}");
         }
         else
         {
@@ -38,7 +38,7 @@ public class deserializeResponse
         if (!JsEntrada.Contains("errorCode"))
         {
             var objetoResultado = JsonConvert.DeserializeObject<respMult>(JsEntrada);
-            return ($"El resultado es : {objetoResultado.GetMultip()}");
+            return ($"El resultado es : {objetoResultado.product}");
         }
         else
         {
@@ -74,7 +74,7 @@ public class deserializeResponse
         try
         {
             var respuestaResultado = JsonConvert.DeserializeObject<respJournalConjunta>(JsEntrada);
-            var filasDeOperaciones = respuestaResultado.GetFilas();
+            var filasDeOperaciones = respuestaResultado.operations;
             var OperacionesString = new string[filasDeOperaciones.Length];
             for (var a = 0; a < filasDeOperaciones.Length; a++)
             {

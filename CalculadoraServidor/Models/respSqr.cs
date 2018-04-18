@@ -1,24 +1,11 @@
-using System.Runtime.Serialization;
-
-/*Objeto serialización de raiz cuadrada */
-[DataContract(Name = "raiz_cuadrada")]
 public class respSqr
 {
-    [DataMember(Name = "Square")]
-    private double resultado;
+    public double square { get; set; }
 
     public respSqr(double numeroEn)
     {
-        SetResultado(numeroEn);
+        square = numeroEn;
     }
-
-    public double GetResultado()
-    {
-        return resultado;
-    }
-
-    public void SetResultado(double value)
-    {
-        resultado = value;
-    }
+    public respSqr()
+    { }
 }

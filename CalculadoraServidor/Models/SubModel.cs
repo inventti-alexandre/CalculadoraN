@@ -8,8 +8,8 @@ namespace CalculadoraServidor.Models
 
         public static object restar(ObjResta datosResta, string EviId)
         {
-            double minuendo = datosResta.GetMinuend();
-            double[] sustraendo = datosResta.GetSubtrahend();
+            double minuendo = datosResta.minuend;
+            double[] sustraendo = datosResta.subtrahend;
             string OperacionSt = $"{minuendo}";
             for (int a = 0; a < sustraendo.Length; a++)
             {

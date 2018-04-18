@@ -1,22 +1,11 @@
-using System.Runtime.Serialization;
-
-/*Objeto serialización de resta */
-[DataContract(Name = "ResResta")]
 public class respMult
 {
-    [DataMember(Name = "Product")]
-    private double multip;
+    public double product { get; set; }
 
     public respMult(double ResEn)
     {
-        SetMultip(ResEn);
+        product = ResEn;
     }
-    public double GetMultip()
-    {
-        return multip;
-    }
-    public void SetMultip(double value)
-    {
-        multip = value;
-    }
+    public respMult()
+    { }
 }
