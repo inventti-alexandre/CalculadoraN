@@ -7,7 +7,7 @@ namespace Calculadora
     public class menus
     {
         /*Dirección del servidor al que se quiere acceder */
-        public static string servidor = "http://localhost:5000";
+        const string servidor = "http://localhost:5000";
         /*Menu 1
         1.Hacer calculos
         2.Consulta de Journal
@@ -15,11 +15,10 @@ namespace Calculadora
         Default mensaje error y vuelta al menu1*/
         public static void menu()
         {
-            Boolean salida = false;
-
-            string eleccion;
+            var salida = false;
+            var eleccion = "";
             /*Id para la sesion */
-            string IdSesion = PedirId();
+            var IdSesion = PedirId();
             IdSesion = conversion(IdSesion);
             Console.Clear();
             while (!salida)
@@ -72,8 +71,7 @@ namespace Calculadora
         public static string seleccionar()
         {
             Console.WriteLine("elije");
-            string elec;
-            elec = Console.ReadLine();
+            var elec = Console.ReadLine();
             return elec;
         }
 
@@ -100,7 +98,7 @@ namespace Calculadora
         public static void menuCalc(string IdSesion)
         {
             Console.Clear();
-            Boolean salida2 = false;
+            var salida2 = false;
             while (!salida2)
             {
                 opcionesCalcular();
@@ -109,22 +107,19 @@ namespace Calculadora
                     case ("1"):
                         {
                             Console.Clear();
-                            string sumadores = SolicitarValores("sumar");
+                            var sumadores = SolicitarValores("sumar");
                             try
                             {
-                                double[] sumadoresDoub = convertirDouble(sumadores);
-
-                                suma sumador = new suma(sumadoresDoub);
-
-
-                                MemoryStream streamS = new MemoryStream();
-                                DataContractJsonSerializer conversor = new DataContractJsonSerializer(typeof(suma));
+                                var sumadoresDoub = convertirDouble(sumadores);
+                                var sumador = new suma(sumadoresDoub);
+                                var streamS = new MemoryStream();
+                                var conversor = new DataContractJsonSerializer(typeof(suma));
                                 conversor.WriteObject(streamS, sumador);
-                                String JsonFinal = serializador(conversor, streamS);
-                                respuesta res = new respuesta();
-                                string salida = res.responder($"{servidor}/Calculator/Add", JsonFinal, IdSesion);
+                                var JsonFinal = serializador(conversor, streamS);
+                                var res = new respuesta();
+                                var salida = res.responder($"{servidor}/Calculator/Add", JsonFinal, IdSesion);
                                 Console.Clear();
-                                string Respuesta = deserializeResponse.DeserializeSuma(salida);
+                                var Respuesta = deserializeResponse.DeserializeSuma(salida);
                                 Console.WriteLine(Respuesta);
                                 continuar();
                             }
@@ -141,20 +136,18 @@ namespace Calculadora
 
                             try
                             {
-
-                                double minuendo = Convert.ToDouble(Console.ReadLine());
-                                string sustraendos = SolicitarValores("restar");
-                                double[] sustraendosDoub = convertirDouble(sustraendos);
-                                resta restador = new resta(minuendo, sustraendosDoub);
-
-                                MemoryStream streamS = new MemoryStream();
-                                DataContractJsonSerializer conversor = new DataContractJsonSerializer(typeof(resta));
+                                var minuendo = Convert.ToDouble(Console.ReadLine());
+                                var sustraendos = SolicitarValores("restar");
+                                var sustraendosDoub = convertirDouble(sustraendos);
+                                var restador = new resta(minuendo, sustraendosDoub);
+                                var streamS = new MemoryStream();
+                                var conversor = new DataContractJsonSerializer(typeof(resta));
                                 conversor.WriteObject(streamS, restador);
-                                String JsonFinal = serializador(conversor, streamS);
-                                respuesta res = new respuesta();
+                                var JsonFinal = serializador(conversor, streamS);
+                                var res = new respuesta();
                                 Console.Clear();
-                                string salida = res.responder($"{servidor}/Calculator/Sub", JsonFinal, IdSesion);
-                                string Respuesta = deserializeResponse.DeserializeResta(salida);
+                                var salida = res.responder($"{servidor}/Calculator/Sub", JsonFinal, IdSesion);
+                                var Respuesta = deserializeResponse.DeserializeResta(salida);
                                 Console.WriteLine(Respuesta);
                                 continuar();
                             }
@@ -169,20 +162,20 @@ namespace Calculadora
                     case ("3"):
                         {
                             Console.Clear();
-                            string multiplicadores = SolicitarValores("multiplicar");
+                            var multiplicadores = SolicitarValores("multiplicar");
                             try
                             {
 
-                                double[] multiplicadoresDoub = convertirDouble(multiplicadores);
-                                multiplicacion multiplicador = new multiplicacion(multiplicadoresDoub);
-                                MemoryStream streamS = new MemoryStream();
-                                DataContractJsonSerializer conversor = new DataContractJsonSerializer(typeof(multiplicacion));
+                                var multiplicadoresDoub = convertirDouble(multiplicadores);
+                                var multiplicador = new multiplicacion(multiplicadoresDoub);
+                                var streamS = new MemoryStream();
+                                var conversor = new DataContractJsonSerializer(typeof(multiplicacion));
                                 conversor.WriteObject(streamS, multiplicador);
-                                String JsonFinal = serializador(conversor, streamS);
+                                var JsonFinal = serializador(conversor, streamS);
                                 Console.Clear();
-                                respuesta res = new respuesta();
-                                string salida = res.responder($"{servidor}/Calculator/Mult", JsonFinal, IdSesion);
-                                string Respuesta = deserializeResponse.DeserializeMult(salida);
+                                var res = new respuesta();
+                                var salida = res.responder($"{servidor}/Calculator/Mult", JsonFinal, IdSesion);
+                                var Respuesta = deserializeResponse.DeserializeMult(salida);
                                 Console.WriteLine(Respuesta);
                                 continuar();
 
@@ -199,17 +192,17 @@ namespace Calculadora
                             Console.WriteLine("Escriba el dividendo");
                             try
                             {
-                                double dividendo = Convert.ToDouble(Console.ReadLine());
-                                double[] divisores = convertirDouble(SolicitarValores("dividir"));
-                                division dividir = new division(dividendo, divisores);
-                                MemoryStream streamS = new MemoryStream();
-                                DataContractJsonSerializer conversor = new DataContractJsonSerializer(typeof(division));
+                                var dividendo = Convert.ToDouble(Console.ReadLine());
+                                var divisores = convertirDouble(SolicitarValores("dividir"));
+                                var dividir = new division(dividendo, divisores);
+                                var streamS = new MemoryStream();
+                                var conversor = new DataContractJsonSerializer(typeof(division));
                                 conversor.WriteObject(streamS, dividir);
-                                String JsonFinal = serializador(conversor, streamS);
-                                respuesta res = new respuesta();
+                                var JsonFinal = serializador(conversor, streamS);
+                                var res = new respuesta();
                                 Console.Clear();
-                                string salida = res.responder($"{servidor}/Calculator/Div", JsonFinal, IdSesion);
-                                string Respuesta = deserializeResponse.DeserializeDiv(salida);
+                                var salida = res.responder($"{servidor}/Calculator/Div", JsonFinal, IdSesion);
+                                var Respuesta = deserializeResponse.DeserializeDiv(salida);
                                 Console.WriteLine(Respuesta);
                                 continuar();
 
@@ -227,17 +220,17 @@ namespace Calculadora
                             Console.WriteLine("Escriba el numero para realizar la raiz cuadrada");
                             try
                             {
-                                double numeroRaiz = Convert.ToDouble(Console.ReadLine());
-                                raizCuadrada raiz = new raizCuadrada(numeroRaiz);
-                                MemoryStream streamS = new MemoryStream();
-                                DataContractJsonSerializer conversor = new DataContractJsonSerializer(typeof(raizCuadrada));
+                                var numeroRaiz = Convert.ToDouble(Console.ReadLine());
+                                var raiz = new raizCuadrada(numeroRaiz);
+                                var streamS = new MemoryStream();
+                                var conversor = new DataContractJsonSerializer(typeof(raizCuadrada));
                                 conversor.WriteObject(streamS, raiz);
-                                String JsonFinal = serializador(conversor, streamS);
-                                respuesta res = new respuesta();
-                                string salida = res.responder($"{servidor}/Calculator/Sqrt", JsonFinal, IdSesion);
+                                var JsonFinal = serializador(conversor, streamS);
+                                var res = new respuesta();
+                                var salida = res.responder($"{servidor}/Calculator/Sqrt", JsonFinal, IdSesion);
                                 if (salida != "")
                                 {
-                                    respSqr ObjRes = deserializeResponse.DeserializeSqrt(salida);
+                                    var ObjRes = deserializeResponse.DeserializeSqrt(salida);
                                     Console.Clear();
                                     Console.WriteLine($"El resultado es : {ObjRes.square}");
                                 }
@@ -268,8 +261,8 @@ namespace Calculadora
         public static string serializador(DataContractJsonSerializer dato, Stream streamS)
         {
             streamS.Position = 0;
-            StreamReader leido = new StreamReader(streamS);
-            String JsonFinal = leido.ReadToEnd();
+            var leido = new StreamReader(streamS);
+            var JsonFinal = leido.ReadToEnd();
             leido.Close();
             return JsonFinal;
         }
@@ -284,20 +277,20 @@ namespace Calculadora
         {
             Console.Clear();
             Console.WriteLine("Escriba el id sobre el que consultar las operaciones");
-            string IdConsulta = Console.ReadLine();
+            var IdConsulta = Console.ReadLine();
             IdConsulta = conversion(IdConsulta);
-            ObjId objetoId = new ObjId(IdConsulta);
+            var objetoId = new ObjId(IdConsulta);
             Console.Clear();
-            MemoryStream streamS = new MemoryStream();
-            DataContractJsonSerializer conversor = new DataContractJsonSerializer(typeof(ObjId));
+            var streamS = new MemoryStream();
+            var conversor = new DataContractJsonSerializer(typeof(ObjId));
             conversor.WriteObject(streamS, objetoId);
             streamS.Position = 0;
-            StreamReader leido = new StreamReader(streamS);
-            String JsonFinal = leido.ReadToEnd();
+            var leido = new StreamReader(streamS);
+            var JsonFinal = leido.ReadToEnd();
             leido.Close();
-            respuesta res = new respuesta();
-            string salida = res.responder($"{servidor}/Calculator/Journal", JsonFinal, IdSesion);
-            string[] SalidaOperaciones = deserializeResponse.DeserializeResponseYConvertir(salida);
+            var res = new respuesta();
+            var salida = res.responder($"{servidor}/Calculator/Journal", JsonFinal, IdSesion);
+            var SalidaOperaciones = deserializeResponse.DeserializeResponseYConvertir(salida);
             Console.Clear();
             ImprimirDatos(SalidaOperaciones);
             continuar();
@@ -314,7 +307,7 @@ namespace Calculadora
         }
         public static string SolicitarValores(string texto)
         {
-            string sumadores = "";
+            var sumadores = "";
             String Dato = null;
             Console.WriteLine($"Introduzca valores para {texto}, para acabar no introduzca nada");
             Dato = Console.ReadLine();
@@ -329,20 +322,19 @@ namespace Calculadora
 
         public static double[] convertirDouble(string numerosString)
         {
-            string[] numerosStr = numerosString.Split(",");
-            double[] numerosDoub = new double[numerosStr.Length];
-            for (int a = 0; a < numerosDoub.Length; a++)
+            var numerosStr = numerosString.Split(",");
+            var numerosDoub = new double[numerosStr.Length];
+            for (var a = 0; a < numerosDoub.Length; a++)
             {
                 numerosDoub[a] = Convert.ToDouble(numerosStr[a]);
             }
             return numerosDoub;
         }
 
-
         public static string PedirId()
         {
             Console.WriteLine("Escriba su Id para la sesion");
-            string Idevi = Console.ReadLine();
+            var Idevi = Console.ReadLine();
             return Idevi;
         }
         /*Imprimir datos de consulta a journal
@@ -350,13 +342,10 @@ namespace Calculadora
         public static void ImprimirDatos(string[] DatosSt)
         {
 
-            for (int a = 0; a < DatosSt.Length; a++)
+            for (var a = 0; a < DatosSt.Length; a++)
             {
                 Console.WriteLine(DatosSt[a]);
             }
         }
-
-
-
     }
 }
