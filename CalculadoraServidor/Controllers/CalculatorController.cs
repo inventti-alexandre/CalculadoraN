@@ -11,14 +11,8 @@ using Newtonsoft.Json.Linq;
 
 namespace CalculadoraServidor.Controllers
 {
-
     public class CalculatorController : Controller
     {
-        public string Index()
-        {
-            return "Código por defecto";
-        }
-
         /*
         Cada controlador comprueba que las datos sean correctos, si lo son cada modelo se encarga del calculo
         en caso de que no lo sea devuelve un error 400 con la info en el json

@@ -1,5 +1,3 @@
-using System.Runtime.Serialization;
-
 /*Objeto para serializar el envío de la división */
 public class division
 {
@@ -14,6 +12,6 @@ public class division
     }
     public division()
     {
-        
+
     }
 }

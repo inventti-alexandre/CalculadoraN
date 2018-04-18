@@ -4,8 +4,6 @@ namespace CalculadoraServidor.Models
     /*Calculos de division */
     public class DivModel
     {
-
-
         public static object dividir(ObjDiv datos, string EviId)
         {
             long dividendo = Convert.ToInt64(datos.GetDividend());
@@ -23,7 +21,6 @@ namespace CalculadoraServidor.Models
             string tiempo = String.Format("{0:u}", DateTime.Now);
             saveInFile.GuardarOperaciones(EviId, OperacionSt, tiempo, "Div");
             return crearJson.Crear(4, resultado, resto);
-
         }
     }
 }

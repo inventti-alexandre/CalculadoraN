@@ -1,4 +1,3 @@
-
 public class ObjId
 {
     public string id { get; set; }

@@ -1,5 +1,3 @@
-
-using System.Runtime.Serialization;
 /*Objeto para deserializar respuesta de error */
 class ErrorObj
 {
