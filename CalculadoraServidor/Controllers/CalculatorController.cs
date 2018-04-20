@@ -6,12 +6,22 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using CalculadoraServidor.Models;
 using Microsoft.AspNetCore.Diagnostics;
 
+using CalculadoraServidor.Interfaces;
+using CalculadoraServidor.servicios;
+
 namespace CalculadoraServidor.Controllers
 {
 
 
     public class CalculatorController : Controller
     {
+        private readonly IservicioCalc _servicioCalc;
+
+
+        public CalculatorController(IservicioCalc calculatorService)
+        {
+            _servicioCalc = calculatorService;
+        }
 
         /*
         Cada controlador comprueba que las datos sean correctos, si lo son cada modelo se encarga del calculo
@@ -26,7 +36,9 @@ namespace CalculadoraServidor.Controllers
             string IdEvi = Request.Headers[key: "X-Evi-Tracking-Id"];
             if (datos.addens.Length > 1)
             {
-                return Json(AddModel.sumar(datos, IdEvi));
+                var resultado = _servicioCalc.calcular(new AddModel(datos.addens));
+                saveInFile.GuardarOperaciones(IdEvi,$"{_servicioCalc.ToString(new AddModel(datos.addens))}{resultado.Sum}",String.Format("{0:u}", DateTime.Now), "sum");
+                return Json(resultado);
             }
             else
             {
@@ -40,7 +52,9 @@ namespace CalculadoraServidor.Controllers
             string IdEvi = Request.Headers[key: "X-Evi-Tracking-Id"];
             if (datos.subtrahend.Length > 0)
             {
-                return Json(SubModel.restar(datos, IdEvi));
+                var resultado = _servicioCalc.calcular(new SubModel(datos.minuend, datos.subtrahend));
+                saveInFile.GuardarOperaciones(IdEvi,$"{_servicioCalc.ToString(new SubModel(datos.minuend,datos.subtrahend))}{resultado.difference}",String.Format("{0:u}", DateTime.Now), "sub");
+                return Json(resultado);
             }
             else
             {
@@ -54,7 +68,9 @@ namespace CalculadoraServidor.Controllers
             string IdEvi = Request.Headers[key: "X-Evi-Tracking-Id"];
             if (datos.factors.Length > 1)
             {
-                return Json(MultModel.multiplicar(datos, IdEvi));
+                var resultado = _servicioCalc.calcular(new MultModel(datos.factors));
+                saveInFile.GuardarOperaciones(IdEvi,$"{_servicioCalc.ToString(new MultModel(datos.factors))}{resultado.product}",String.Format("{0:u}", DateTime.Now), "mul");
+                return Json(resultado);
             }
             else
             {
@@ -66,9 +82,11 @@ namespace CalculadoraServidor.Controllers
         public JsonResult Div([FromBody]ObjDiv datos)
         {
             string IdEvi = Request.Headers[key: "X-Evi-Tracking-Id"];
-            if (datos.GetDivisor().Length > 0)
+            if (datos.divisor.Length > 0)
             {
-                return Json(DivModel.dividir(datos, IdEvi));
+                var resultado = _servicioCalc.calcular(new DivModel(datos.dividend, datos.divisor));
+                saveInFile.GuardarOperaciones(IdEvi,$"{_servicioCalc.ToString(new DivModel(datos.dividend,datos.divisor))}{resultado.quotient} R: {resultado.remainder}",String.Format("{0:u}", DateTime.Now), "div");
+                return Json(resultado);
             }
             else
             {
@@ -80,7 +98,9 @@ namespace CalculadoraServidor.Controllers
         public JsonResult Sqrt([FromBody]ObjSqr datos)
         {
             string IdEvi = Request.Headers[key: "X-Evi-Tracking-Id"];
-            return Json(SqrModel.RaizCuadrada(datos, IdEvi));
+            var resultado = _servicioCalc.calcular(new SqrModel(datos.number));
+            saveInFile.GuardarOperaciones(IdEvi,$"{_servicioCalc.ToString(new SqrModel(datos.number))}{resultado.square}",String.Format("{0:u}", DateTime.Now), "sqr");
+            return Json(resultado);
         }
         // Post a journal
         [HttpPost]
