@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Diagnostics;
 
 using CalculadoraServidor.Interfaces;
 using CalculadoraServidor.servicios;
+using Microsoft.Extensions.Logging;
 
 namespace CalculadoraServidor.Controllers
 {
@@ -15,12 +16,17 @@ namespace CalculadoraServidor.Controllers
 
     public class CalculatorController : Controller
     {
+
+        private readonly ILogger<CalculatorController> _logger;
+
+        /*Controlador para Nlog */
         private readonly IservicioCalc _servicioCalc;
 
 
-        public CalculatorController(IservicioCalc calculatorService)
+        public CalculatorController(IservicioCalc calculatorService, ILogger<CalculatorController> logger)
         {
             _servicioCalc = calculatorService;
+            _logger = logger;
         }
 
         /*
